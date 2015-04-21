@@ -8,5 +8,5 @@ module.exports = {
     uri: 'mongodb://localhost/jokumuu-dev'
   },
 
-  seedDB: true
+  seedDB: false
 };
