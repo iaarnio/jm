@@ -3,6 +3,7 @@ public
 client/bower_components
 dist
 /server/config/local.env.js
+grunt2gulp.js
 
 # Created by https://www.gitignore.io
 
