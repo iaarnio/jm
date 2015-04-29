@@ -42,6 +42,6 @@
   	requirements: [Schema.Types.ObjectId]
   });
 
-  mongoose.model('Job', JobSchema);
+  module.exports = mongoose.model('Job', JobSchema);
 
 })();
