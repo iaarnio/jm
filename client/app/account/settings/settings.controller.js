@@ -1,21 +1,39 @@
-'use strict';
+(function () {
+  'use strict';
 
-angular.module('jokumuuApp')
-  .controller('SettingsCtrl', function ($scope, User, Auth) {
-    $scope.errors = {};
+  angular.module('jokumuuApp')
+    .controller('SettingsCtrl', SettingCtrl);
 
-    $scope.changePassword = function(form) {
-      $scope.submitted = true;
-      if(form.$valid) {
-        Auth.changePassword( $scope.user.oldPassword, $scope.user.newPassword )
-        .then( function() {
-          $scope.message = 'Password successfully changed.';
-        })
-        .catch( function() {
-          form.password.$setValidity('mongoose', false);
-          $scope.errors.other = 'Incorrect password';
-          $scope.message = '';
-        });
+  SettingCtrl.$inject = ['User', 'Auth'];
+
+  function SettingCtrl(User, Auth) {
+    var vm = this;
+    vm.user = {};
+    vm.errors = {};
+    vm.submitted = false;
+    vm.message = '';
+
+    vm.changePassword = changePassword;
+
+    activate();
+
+    function activate() {
+      toastr.info("SettingCtrl activated");
+    }
+
+    function changePassword(form) {
+      vm.submitted = true;
+      if (form.$valid) {
+        Auth.changePassword(vm.user.oldPassword, vm.user.newPassword)
+          .then(function () {
+            vm.message = 'Password successfully changed.';
+          })
+          .catch(function () {
+            form.password.$setValidity('mongoose', false);
+            vm.errors.other = 'Incorrect password';
+            vm.message = '';
+          });
       }
-		};
-  });
+    }
+  }
+})();

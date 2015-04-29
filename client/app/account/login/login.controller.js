@@ -1,29 +1,47 @@
-'use strict';
+(function () {
+  'use strict';
 
-angular.module('jokumuuApp')
-  .controller('LoginCtrl', function ($scope, Auth, $location, $window) {
-    $scope.user = {};
-    $scope.errors = {};
+  angular.module('jokumuuApp')
+    .controller('LoginCtrl', LoginCtrl);
 
-    $scope.login = function(form) {
-      $scope.submitted = true;
+  LoginCtrl.$inject = ['Auth', '$location', '$window'];
 
-      if(form.$valid) {
+  function LoginCtrl(Auth, $location, $window) {
+    var vm = this;
+
+    vm.user = {};
+    vm.errors = {};
+    vm.submitted = false;
+
+    vm.login = login;
+    vm.loginOauth = loginOauth;
+
+    activate();
+
+    function activate() {
+      toastr.info("LoginCtrl activated");
+    }
+
+    function login(form) {
+      vm.submitted = true;
+
+      if (form.$valid) {
         Auth.login({
-          email: $scope.user.email,
-          password: $scope.user.password
+          email: vm.user.email,
+          password: vm.user.password
         })
-        .then( function() {
-          // Logged in, redirect to home
-          $location.path('/');
-        })
-        .catch( function(err) {
-          $scope.errors.other = err.message;
-        });
+          .then(function () {
+            // Logged in, redirect to home
+            $location.path('/');
+          })
+          .catch(function (err) {
+            vm.errors.other = err.message;
+          });
       }
-    };
+    }
 
-    $scope.loginOauth = function(provider) {
+    function loginOauth(provider) {
       $window.location.href = '/auth/' + provider;
-    };
-  });
+    }
+  }
+})();

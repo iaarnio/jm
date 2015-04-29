@@ -1,22 +1,20 @@
-'use strict';
+(function () {
+  'use strict';
 
-angular.module('jokumuuApp')
-  .controller('MainCtrl', function ($scope, $http) {
-    $scope.awesomeThings = [];
+  angular.module('jokumuuApp')
+    .controller('MainCtrl', MainCtrl);
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-    });
+  MainCtrl.$inject = ['$log'];
 
-    $scope.addThing = function() {
-      if($scope.newThing === '') {
-        return;
-      }
-      $http.post('/api/things', { name: $scope.newThing });
-      $scope.newThing = '';
-    };
+  function MainCtrl($log) {
+    //var vm = this;
 
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
-    };
-  });
+    activate();
+
+    function activate() {
+      toastr.info("MainCtrl activated");
+      $log.info('main');
+    }
+
+  }
+})();

@@ -2,11 +2,11 @@
   'use strict';
 
   angular.module('jokumuuApp')
-    .controller('JobCtrl', jobCtrl);
+    .controller('JobCtrl', JobCtrl);
 
-  jobCtrl.$inject = ['jobService'];
+  JobCtrl.$inject = ['jobService'];
 
-  function jobCtrl(jobService, $log) {
+  function JobCtrl(jobService, $log) {
     var vm = this;
 
     vm.jobs = [{name: 'initial'}];
@@ -19,37 +19,37 @@
     activate();
 
     function activate() {
+      toastr.info("JobCtrl activated");
       $log.info('activate');
       listJobs();
     }
 
-    vm.listJobs = function () {
+    function listJobs() {
       $log.info('JobController listJobs');
       jobService.listJobs()
         .then(function (jobs) {
           vm.jobs = jobs;
         })
+    }
 
-    };
-
-    vm.viewJob = function () {
+    function viewJob() {
       $log.info('JobController viewJob');
       jobService.viewJob();
-    };
+    }
 
-    vm.addJob = function () {
+    function addJob() {
       $log.info('JobController addJob');
       jobService.addJob();
-    };
+    }
 
-    vm.deleteJob = function (job) {
+    function deleteJob(job) {
       $log.info('JobController deleteJob');
       jobService.addJob();
     };
 
-    vm.applyJob = function () {
+    function applyJob() {
       $log.info('JobController applyJob');
       jobService.addJob();
-    };
+    }
   }
 })();

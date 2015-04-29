@@ -1,5 +1,3 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
-
 <header id="header">
   <div class="container">
     <h1>Available jobs</h1>
@@ -15,8 +13,8 @@
       <span class="span1">#</span>
     </div>
     <div class="row" ng-repeat="job in vm.jobs">
-      <span class="span3">{{job.name}}</span>
-      <span class="span3">{{job.location}}</span>
+      <span class="span3">{{job.title}}</span>
+      <span class="span3">{{job.employer}}</span>
       <span class="span5">{{job.requirements}}</span>
       <span class="span1">{{job.amount}}</span>
     </div>

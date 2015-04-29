@@ -7,6 +7,7 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var Job = require('../api/job/job.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -47,3 +48,26 @@ User.find({}).remove(function() {
     }
   );
 });
+
+Job.find({}).remove(function() {
+  Job.create({
+    title : 'Warehouse work',
+    employer : 'Mr Employer'
+  }, {
+    title : 'Cashier',
+    employer : 'Mrs Corporation'
+  }, {
+    title : 'Car driver',
+    employer : 'Father and Son co'
+  },  {
+    title : 'Store assistant',
+    employer : 'Click and Go Inc'
+  },  {
+    title : 'Cleaner',
+    employer : 'Putsis'
+  },{
+    title : 'Painter',
+    employer : 'Painter Boys'
+  });
+});
+

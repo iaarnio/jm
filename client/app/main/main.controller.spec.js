@@ -17,12 +17,12 @@ describe('Controller: MainCtrl', function () {
 
     scope = $rootScope.$new();
     MainCtrl = $controller('MainCtrl', {
-      $scope: scope
+      vm: scope
     });
   }));
 
   it('should attach a list of things to the scope', function () {
     $httpBackend.flush();
-    expect(scope.awesomeThings.length).toBe(4);
+    expect(scope.jobs.length).toBe(4);
   });
 });

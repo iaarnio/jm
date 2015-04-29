@@ -1,10 +1,15 @@
-'use strict';
+(function () {
+  'use strict';
 
-angular.module('jokumuuApp')
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/intro', {
-        templateUrl: 'app/main/intto.html',
-        controller: 'IntroCtrl'
-      });
-  });
+  angular.module('jokumuuApp')
+    .config(function ($routeProvider) {
+      $routeProvider
+        .when('/intro', {
+          templateUrl: 'app/intro/intro.html',
+          controller: 'IntroCtrl',
+          controllerAs: 'vm'
+        });
+    });
+
+
+})();
