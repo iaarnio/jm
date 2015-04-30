@@ -4,12 +4,14 @@
   angular.module('jokumuuApp')
     .controller('IntroCtrl', IntroCtrl);
 
-  function IntroCtrl() {
+  IntroCtrl.$inject = ['logger'];
+
+  function IntroCtrl(logger) {
 
     activate();
 
     function activate() {
-      toastr.info("IntroCtrl activated");
+      logger.log('IntroCtrl activated');
     }
   }
 })();

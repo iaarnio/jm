@@ -4,9 +4,9 @@
   angular.module('jokumuuApp')
     .controller('JobCtrl', JobCtrl);
 
-  JobCtrl.$inject = ['jobService'];
+  JobCtrl.$inject = ['jobService', 'logger'];
 
-  function JobCtrl(jobService, $log) {
+  function JobCtrl(jobService, logger) {
     var vm = this;
 
     vm.jobs = [{name: 'initial'}];
@@ -19,36 +19,35 @@
     activate();
 
     function activate() {
-      toastr.info("JobCtrl activated");
-      $log.info('activate');
+      logger.log('JobCtrl activated');
       listJobs();
     }
 
     function listJobs() {
-      $log.info('JobController listJobs');
+      logger.log('JobController listJobs');
       jobService.listJobs()
         .then(function (jobs) {
           vm.jobs = jobs;
-        })
+        });
     }
 
     function viewJob() {
-      $log.info('JobController viewJob');
+      logger.log('JobController viewJob');
       jobService.viewJob();
     }
 
     function addJob() {
-      $log.info('JobController addJob');
+      logger.log('JobController addJob');
       jobService.addJob();
     }
 
     function deleteJob(job) {
-      $log.info('JobController deleteJob');
-      jobService.addJob();
-    };
+      logger.log('JobController deleteJob');
+      jobService.deleteJob(job);
+    }
 
     function applyJob() {
-      $log.info('JobController applyJob');
+      logger.log('JobController applyJob');
       jobService.addJob();
     }
   }

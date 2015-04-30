@@ -15,9 +15,6 @@
 
       $locationProvider.html5Mode(true);
       $httpProvider.interceptors.push('authInterceptor');
-
-      toastr.options.positionClass = 'toast-bottom-right';
-      toastr.options.backgroundpositionClass = 'toast-bottom-right';
     })
 
     .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {

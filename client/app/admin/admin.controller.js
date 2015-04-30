@@ -4,19 +4,21 @@
   angular.module('jokumuuApp')
     .controller('AdminCtrl', AdminCtrl);
 
-  AdminCtrl.$inject = ['$http', 'Auth', 'User'];
+  AdminCtrl.$inject = ['$http', 'Auth', 'User', 'logger'];
 
-  function AdminCtrl($http, Auth, User) {
+  function AdminCtrl($http, Auth, User, logger) {
+    var vm = this;
 
-    // Use the User $resource to fetch all users
     vm.users = User.query();
+    vm.users = [];
 
     vm.deleteUser = deleteUser;
 
     activate();
 
     function activate() {
-      toastr.info("AdminCtrl activated");
+      logger.log('AdminCtrl activated');
+      vm.users = User.query();
     }
 
     function deleteUser(user)

@@ -4,9 +4,9 @@
   angular.module('jokumuuApp')
     .controller('NavbarCtrl', NavbarCtrl);
 
-  NavbarCtrl.$inject = ['$location', 'Auth'];
+  NavbarCtrl.$inject = ['$location', 'Auth', 'logger'];
 
-  function NavbarCtrl($location, Auth) {
+  function NavbarCtrl($location, Auth, logger) {
     var vm = this;
 
     vm.menu = [{
@@ -25,7 +25,7 @@
     activate();
 
     function activate() {
-      toastr.info("NavbarCtrl activated");
+      logger.log('NavbarCtrl activated');
     }
 
     function logout() {

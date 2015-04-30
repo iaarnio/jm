@@ -32,23 +32,23 @@
         }
       ];
 
-      $log.info('listJobs: ' + jobs)
+      $log.info('listJobs: ' + jobs);
       return $q.when(jobs);
     }
 
-    function viewJob() {
+    function viewJob(job) {
 
     }
 
-    function addJob() {
+    function addJob(job) {
 
     }
 
-    function deleteJob() {
+    function deleteJob(job) {
 
     }
 
-    function applyJob() {
+    function applyJob(job) {
 
     }
   }
