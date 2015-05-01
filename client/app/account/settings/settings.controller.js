@@ -4,9 +4,9 @@
   angular.module('jokumuuApp')
     .controller('SettingsCtrl', SettingCtrl);
 
-  SettingCtrl.$inject = ['User', 'Auth'];
+  SettingCtrl.$inject = ['User', 'Auth', 'logger'];
 
-  function SettingCtrl(User, Auth) {
+  function SettingCtrl(User, Auth, logger) {
     var vm = this;
     vm.user = {};
     vm.errors = {};
@@ -18,7 +18,7 @@
     activate();
 
     function activate() {
-      toastr.info("SettingCtrl activated");
+      logger.log("SettingCtrl activated");
     }
 
     function changePassword(form) {

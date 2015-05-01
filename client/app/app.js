@@ -5,7 +5,8 @@
     'ngCookies',
     'ngResource',
     'ngSanitize',
-    'ngRoute'
+    'ngRoute',
+    'core'
   ])
     .config(function ($routeProvider, $locationProvider, $httpProvider) {
       $routeProvider

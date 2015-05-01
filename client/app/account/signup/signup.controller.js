@@ -4,9 +4,9 @@
   angular.module('jokumuuApp')
     .controller('SignupCtrl', SignupCtrl);
 
-  SignupCtrl.$inject = ['Auth', '$location', '$window'];
+  SignupCtrl.$inject = ['Auth', '$location', '$window', 'logger'];
 
-  function SignupCtrl(Auth, $location, $window) {
+  function SignupCtrl(Auth, $location, $window, logger) {
     var vm = this;
 
     vm.user = {};
@@ -19,7 +19,7 @@
     activate();
 
     function activate() {
-      toastr.info("SignupCtrl activated");
+      logger.log("SignupCtrl activated");
     }
 
     function register(form) {

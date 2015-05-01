@@ -4,9 +4,9 @@
   angular.module('jokumuuApp')
     .controller('LoginCtrl', LoginCtrl);
 
-  LoginCtrl.$inject = ['Auth', '$location', '$window'];
+  LoginCtrl.$inject = ['Auth', '$location', '$window', 'logger'];
 
-  function LoginCtrl(Auth, $location, $window) {
+  function LoginCtrl(Auth, $location, $window, logger) {
     var vm = this;
 
     vm.user = {};
@@ -19,7 +19,7 @@
     activate();
 
     function activate() {
-      toastr.info("LoginCtrl activated");
+      logger.log("LoginCtrl activated");
     }
 
     function login(form) {
