@@ -1,15 +1,18 @@
 (function () {
   'use strict';
 
-  angular.module('jokumuuApp')
+  angular.module('core', [])
     .factory('logger', logger);
 
-  logger.$inject = ['$log'];
+  logger.$inject = ['$log', 'toastr'];
 
-  function logger($log) {
+  function logger($log, toastr) {
 
-    toastr.options.positionClass = 'toast-bottom-right';
-    toastr.options.backgroundpositionClass = 'toast-bottom-right';
+    $log.info(toastr);
+    $log.info(toastr.options);
+
+//    toastr.options.positionClass = 'toast-bottom-right';
+//    toastr.options.backgroundpositionClass = 'toast-bottom-right';
 
     return {
       log: log,
