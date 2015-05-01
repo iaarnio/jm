@@ -18,7 +18,7 @@
     activate();
 
     function activate() {
-      logger.log("SettingCtrl activated");
+      logger.log('SettingCtrl activated');
     }
 
     function changePassword(form) {

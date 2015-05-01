@@ -19,7 +19,7 @@
     activate();
 
     function activate() {
-      logger.log("LoginCtrl activated");
+      logger.log('LoginCtrl activated');
     }
 
     function login(form) {

@@ -19,7 +19,7 @@
     activate();
 
     function activate() {
-      logger.log("SignupCtrl activated");
+      logger.log('SignupCtrl activated');
     }
 
     function register(form) {
