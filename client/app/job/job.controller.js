@@ -31,14 +31,14 @@
         });
     }
 
-    function viewJob() {
+    function viewJob(job) {
       logger.log('JobController viewJob');
-      jobService.viewJob();
+      jobService.viewJob(job);
     }
 
-    function addJob() {
+    function addJob(job) {
       logger.log('JobController addJob');
-      jobService.addJob();
+      jobService.addJob(job);
     }
 
     function deleteJob(job) {
@@ -46,9 +46,9 @@
       jobService.deleteJob(job);
     }
 
-    function applyJob() {
+    function applyJob(job) {
       logger.log('JobController applyJob');
-      jobService.addJob();
+      jobService.addJob(job);
     }
   }
 })();
