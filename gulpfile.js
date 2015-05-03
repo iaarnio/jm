@@ -85,7 +85,7 @@ gulp.task('js', function() {
 ////////////////////////////////////////////////////////////
 
 function startBrowserSync() {
-  if (browserSync.active) {
+  if (args.nosync || browserSync.active) {
     return;
   }
 
