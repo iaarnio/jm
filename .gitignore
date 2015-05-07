@@ -1,11 +1,14 @@
 ### own setting ###
-public
+public/
 client/bower_components
-build
-dist
-/server/config/local.env.js
+build/
+dist/
+server/config/local.env.js
 grunt2gulp.js
 *.css
+db/
+log/
+.settings/
 
 # Created by https://www.gitignore.io
 
