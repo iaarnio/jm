@@ -15,20 +15,36 @@ module.exports = function() {
 	  },
 	  js: [
 		  clientApp + '**/*.js',
-//		  '!' + bower + '**/*.js',
+		  '!' + bower + '**/*.js',
 		  '!' + clientApp + '**/*.spec.js'
 	  ],
+	  build: './build/',
+	  images: client + 'assets/images/**/*.*',
+	  fonts: bower + 'font-awesome/fonts/**/*.*',
+	  htmltemplates: clientApp + '**/*.html',
 	  index: client + 'index.html',
 	  client: client,
 	  css: temp + 'app/app.css',
 	  server: server, 
       temp: temp,
+
+      // Template cache
+	  templatecache: {
+		  file: 'templates.js',
+		  options: {
+			  module: 'core',
+			  standAlone: false,
+			  root: 'app/'
+		  }
+	  },
+	  
+	  // Browser sync
 	  startBrowsersyncDelay: 1000,
 	  
 	  // Bower and NPM locations
 	  bower: {
 		  json: require('./bower.json'),
-		  directory: client + 'bower_components/', //bower,
+		  directory: bower,
 		  ignorePath: '../..'
 	  },
 	  
