@@ -8,6 +8,7 @@ grunt2gulp.js
 *.css
 db/
 log/
+launch.json
 
 # Created by https://www.gitignore.io
 
