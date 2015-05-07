@@ -58,6 +58,7 @@ function onError(error) {
 
   // API routes
   app.use('/api/things', require('./api/thing'));
+  app.use('/api/jobs', require('./api/job'));
   app.use('/api/users', require('./api/user'));
 
   app.use('/auth', require('./auth'));

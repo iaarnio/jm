@@ -68,6 +68,7 @@ Job.find({}).remove(function() {
   },{
     title : 'Painter',
     employer : 'Painter Boys'
+  }, function() {
+      console.log('finished populating jobs');
   });
 });
-
