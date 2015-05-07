@@ -19,7 +19,10 @@ module.exports = function (app) {
     .get(errors[404]);
 
   // UI routes (all others)
-  app.get('/*', function (req, res) {
-    res.sendfile('client' + req.url);
-  });
+  app.use('/', express.static('./client'));
+    
+//  app.get('/*', function (req, res) {
+//    res.sendfile('client' + req.url);
+//  });
 };
+

@@ -12,6 +12,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var config = require('./config/environment');
 var http = require('http');
+var errors = require('./components/errors');
 
 // Connect to database
 mongoose.connect(config.mongo.uri, config.mongo.options);
@@ -23,7 +24,7 @@ if (config.seedDB) { require('./config/seed'); }
 var app = express();
 var server = http.createServer(app);
 require('./config/express')(app);
-require('./routes')(app);
+//require('./routes')(app);
 
 // Start server
 server.listen(config.port, config.ip);
@@ -54,6 +55,24 @@ function onError(error) {
       throw error;
   }
 }
+
+  // API routes
+  app.use('/api/things', require('./api/thing'));
+  app.use('/api/users', require('./api/user'));
+
+  app.use('/auth', require('./auth'));
+
+  // All undefined asset or api routes should return a 404
+  app.route('/:url(api|auth|components|app|bower_components|assets)/*')
+    .get(errors[404]);
+
+  // UI routes (all others)
+  app.use('/', express.static('./client'));
+    
+//  app.get('/*', function (req, res) {
+//    res.sendfile('client' + req.url);
+//  });
+
 
 // Event listener for HTTP server "listening" event.
 function onListening() {

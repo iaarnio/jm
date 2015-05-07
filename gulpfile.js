@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var args = require('yargs').argv;
 var browserSync = require('browser-sync');
 var del = require('del');
+var path = require('path');
 var $ = require('gulp-load-plugins')({lazy: true});
 var config = require('./gulp.config.js')();
 var port = process.env.PORT || config.defaultPort;
@@ -129,7 +130,7 @@ gulp.task('js', function() {
 
 gulp.task('mongo-start', function() {
   log('Starting MongoDB');
-  runCommand('mongod --dbpath ./db/');
+  runCommand('mongod --config ' + path.join(__dirname, 'db.config'));
 });
 
 gulp.task('mongo-stop', function() {
@@ -141,12 +142,15 @@ gulp.task('mongo-stop', function() {
 
 
 function runCommand(command) {
+  log('Running command: ' + command);
   var exec = require('child_process').exec;
   
   exec(command, function (err, stdout, stderr) {
-    console.log(err);
     console.log(stdout);
     console.log(stderr);
+    if (err) {
+      console.log(err);
+    }
   });
 }
 
@@ -174,7 +178,7 @@ function startBrowserSync() {
     injectChanges: true,
     logFileChanges: true,
     logLevel: 'debug',
-    logPrefix: 'gulp-patterns',
+    logPrefix: 'gulp',
     notify: true,
     reloadDelay: 1000
   };
