@@ -1,16 +1,16 @@
 var gulp = require('gulp');
-//var uglify = require('uglify');
-var $ = require('gulp-load-plugins')({lazy: true});
+var args = require('yargs').argv;
 var browserSync = require('browser-sync');
+var del = require('del');
+var $ = require('gulp-load-plugins')({lazy: true});
 var config = require('./gulp.config.js')();
 var port = process.env.PORT || config.defaultPort;
 
-gulp.task('default', ['sass', 'watch'], function() {
-});
+gulp.task('default', ['help']);
+
+gulp.task('help', $.taskListing);
 
 gulp.task('serve-dev', ['inject'], function() {
-  log('serve-dev');
-  debugger;
   var nodeOptions = {
     script: config.nodeServer,
     delayTime: 1,
@@ -26,6 +26,39 @@ gulp.task('serve-dev', ['inject'], function() {
       log('nodemon starting');
       startBrowserSync();
     });
+});
+
+gulp.task('clean', ['clean-fonts', 'clean-images']);
+
+gulp.task('clean-fonts', function(done) {
+  clean(config.build + 'fonts/**/*.*', done);
+});
+
+gulp.task('clean-images', function(done) {
+  clean(config.build + 'images/**/*.*', done);
+});
+
+gulp.task('clean-code', function(done) {
+  var files = [].concat(
+    config.temp + '**/*.js',
+    config.build + 'js/**/*.html'
+  )
+  clean(files, done);
+});
+
+gulp.task('fonts', ['clean-fonts'], function() {
+  log('Copying fonts');
+  return gulp
+    .src(config.fonts)
+    .pipe(gulp.dest(config.build + 'fonts'));
+});
+
+gulp.task('images', ['clean-images'], function() {
+  log('Copying/compressing images');
+  return gulp
+    .src(config.images)
+    .pipe($.imagemin({optimizationLevel: 4}))
+    .pipe(gulp.dest(config.build + 'images'));
 });
 
 gulp.task('sass', function (){
@@ -52,6 +85,19 @@ gulp.task('watch', function() {
     .on('change', function(evt) {
       log('[watcher] File ' + evt.path.replace(/.*(?=sass)/,'') + ' was ' + evt.type + ', compiling...');
     });
+});
+
+gulp.task('templatecache', ['clean-code'], function() {
+  log('Creating AngularJS $templateCache');
+  
+  return gulp
+    .src(config.htmltemplates)
+    .pipe($.minifyHtml({empty: true}))
+    .pipe($.angularTemplatecache(
+      config.templatecache.file,
+      config.templatecache.options
+    ))
+    .pipe(gulp.dest(config.temp));
 });
 
 gulp.task('wiredep', function() {
@@ -143,10 +189,10 @@ function displayError(error) {
   console.error(errorString);
 };
 
-/*function clean(path, done) {
+function clean(path, done) {
   log('Cleaning ' + path);
   del(path, done);
-}*/
+}
 
 function log(msg) {
 	$.util.log($.util.colors.blue(msg));
