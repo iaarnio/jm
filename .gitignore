@@ -1,10 +1,10 @@
 ### own setting ###
 public/
 client/bower_components
+src/client/bower_components
 build/
 dist/
 server/config/local.env.js
-grunt2gulp.js
 *.css
 db/
 log/

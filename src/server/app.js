@@ -1,4 +1,4 @@
-/// <reference path="../typings/node/node.d.ts"/>
+/// <reference path="../../typings/node/node.d.ts"/>
 /**
  * Main application file
  */
@@ -57,18 +57,14 @@ function onError(error) {
 }
 
   // API routes
-  app.use('/api/things', require('./api/thing'));
   app.use('/api/jobs', require('./api/job'));
-  app.use('/api/users', require('./api/user'));
-
-  app.use('/auth', require('./auth'));
 
   // All undefined asset or api routes should return a 404
-  app.route('/:url(api|auth|components|app|bower_components|assets)/*')
+  app.route('/:url(api|components|app|bower_components|assets)/*')
     .get(errors[404]);
 
   // UI routes (all others)
-  app.use('/', express.static('./client'));
+  app.use('/', express.static('./src/client'));
     
 //  app.get('/*', function (req, res) {
 //    res.sendfile('client' + req.url);
