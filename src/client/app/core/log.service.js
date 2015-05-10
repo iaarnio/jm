@@ -4,12 +4,15 @@
   angular.module('core')
     .factory('logger', logger);
 
-  logger.$inject = ['$log'];
+  logger.$inject = ['$log', '$mdToast'];
 
-  function logger($log) {
+  function logger($log, $mdToast) {
 
-    toastr.options.positionClass = 'toast-bottom-right';
-    toastr.options.backgroundpositionClass = 'toast-bottom-right';
+    var position = {
+      bottom: true,
+      right: true
+    };
+    var delay = 3000;
 
     return {
       log: log,
@@ -19,15 +22,27 @@
     function log(msg, noToast) {
       $log.info(msg);
       if (!noToast) {
-        toastr.info(msg);
+        showToast(msg, 'info');
       }
     }
 
     function logError(msg, noToast) {
       $log.error(msg);
       if (!noToast) {
-        toastr.error(msg);
+        showToast(msg, 'error');
       }
+    }
+
+    function showToast(msg, level) {
+      if (level === 'error') {
+        msg = 'ERROR: ' + msg;  // TODO use ! icon or similar alert icon
+      }
+      $mdToast.show(
+        $mdToast.simple()
+          .content(msg)
+          .position(position)
+          .hideDelay(delay)
+        );
     }
   }
 

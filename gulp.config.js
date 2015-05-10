@@ -6,13 +6,10 @@ module.exports = function() {
 
 	var config = {
 
-	  // File paths
-//	  js: [
-//		  clientApp + '**/*.js',
-//		  '!' + clientApp + '**/*.spec.js'
-//	  ],
-	  js: [
-		  clientApp + '**/*.js'
+//  File paths
+	js: [
+		  clientApp + '**/*.js',
+		  '!' + clientApp + '**/*.spec.js'
 	  ],
 	  css: clientApp + '**/*.css',
 	  images: client + 'assets/images/**/*.*',
