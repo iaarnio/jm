@@ -12,7 +12,7 @@
     activate();
 
     function activate() {
-      logger.log('MainCtrl activated');
+      logger.info('MainCtrl activated');
     }
 
   }

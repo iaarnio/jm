@@ -19,12 +19,12 @@
     activate();
 
     function activate() {
-      logger.log('JobCtrl activated');
+      logger.info('JobCtrl activated');
       listJobs();
     }
 
     function listJobs() {
-      logger.log('JobController listJobs');
+      logger.info('JobController listJobs');
       jobService.listJobs()
         .then(function (jobs) {
           vm.jobs = jobs;
@@ -32,22 +32,22 @@
     }
 
     function viewJob(job) {
-      logger.log('JobController viewJob');
+      logger.info('JobController viewJob');
       jobService.viewJob(job);
     }
 
     function addJob(job) {
-      logger.log('JobController addJob');
+      logger.info('JobController addJob');
       jobService.addJob(job);
     }
 
     function deleteJob(job) {
-      logger.log('JobController deleteJob');
+      logger.info('JobController deleteJob');
       jobService.deleteJob(job);
     }
 
     function applyJob(job) {
-      logger.log('JobController applyJob');
+      logger.info('JobController applyJob');
       jobService.addJob(job);
     }
   }

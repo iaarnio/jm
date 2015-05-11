@@ -8,6 +8,7 @@ module.exports = function() {
 
 //  File paths
 	js: [
+		  clientApp + '**/*.module.js',
 		  clientApp + '**/*.js',
 		  '!' + clientApp + '**/*.spec.js'
 	  ],

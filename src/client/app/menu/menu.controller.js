@@ -7,12 +7,17 @@
   MenuController.$inject = ['logger'];
 
   function MenuController(logger) {
-    //var vm = this;
+    var vm = this;
+
+    vm.menu = [{
+      'title': 'Home',
+      'link': '/'
+    }];
 
     activate();
 
     function activate() {
-      logger.log('MenuController activated');
+      logger.info('MenuController activated');
     }
 
   }

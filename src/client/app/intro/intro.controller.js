@@ -11,7 +11,7 @@
     activate();
 
     function activate() {
-      logger.log('IntroCtrl activated');
+      logger.info('IntroCtrl activated');
     }
   }
 })();

@@ -49,12 +49,8 @@ function inject() {
   var wiredep = require('wiredep').stream;
   var wiredepOptions = config.getWiredepOptions();
   var jsAndCss = [].concat(config.js, config.css);
-//  var sources = gulp.src(jsAndCss, {read: false});
   var sources = gulp.src(jsAndCss, {read: false});
   var injectOptions = config.getInjectOptions();
-  log(injectOptions.ignorePath);
-  
-//  var sources = gulp.src([config.js, config.css], {base: './src/', read: false});
 
   return gulp
     .src(config.index)
