@@ -19,18 +19,23 @@
     <!-- inject:css -->
     <!-- endinject -->
   </head>
-  <body ng-app="jokumuuApp">
-    <div ng-include="'app/menu/menu.html'"></div>
-
-    <div ng-view=""></div>
-
-<footer class="footer">
-  <div class="container">
-      <p>Joku Muu service |
-        <a href="/">support link</a> |
-         <a href="/">terms etc</a></p>
-  </div>
-</footer>
+  
+  <body ng-app="jokumuuApp" layout="column">
+    <header>
+      <div ng-include="'app/menu/menu.html'"></div>
+    </header>
+    
+    <article>
+      <div ng-view=""></div>
+    </article>
+    
+    <footer class="footer" layout-align="center end">
+      <div class="container">
+          <p>Joku Muu service |
+            <a href="/">support link</a> |
+             <a href="/">terms etc</a></p>
+      </div>
+    </footer>
 
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -45,6 +50,7 @@
     <script src="bower_components/angular-material/angular-material.js"></script>
     <script src="bower_components/toastr/toastr.js"></script>
     <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
     <!-- endbower -->
 
     <script src="app/app.js"></script>
@@ -56,11 +62,11 @@
       <script src="/app/core/constants.js"></script>
       <script src="/app/intro/intro.controller.js"></script>
       <script src="/app/intro/intro.js"></script>
-      <script src="/app/main/main.controller.js"></script>
-      <script src="/app/main/main.js"></script>
       <script src="/app/job/job.controller.js"></script>
       <script src="/app/job/job.js"></script>
       <script src="/app/job/job.service.js"></script>
+      <script src="/app/main/main.controller.js"></script>
+      <script src="/app/main/main.js"></script>
       <script src="/app/menu/menu.controller.js"></script>
       <script src="/app/blocks/logger/logger.js"></script>
       <!-- endinject -->

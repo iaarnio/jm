@@ -9,10 +9,16 @@
   function MenuController(logger) {
     var vm = this;
 
-    vm.menu = [{
-      'title': 'Home',
-      'link': '/'
-    }];
+    vm.menu = [
+      {
+        'title': 'Home',
+        'link': '/'
+      },
+      {
+        'title': 'Login',
+        'link': '/'
+      }
+    ];
 
     activate();
 

@@ -5,6 +5,8 @@
     'ngMaterial',
     'ngAnimate',
     'ngAria',
+    'ngMdIcons',
+    
     'ngCookies',
     'ngResource',
     'ngSanitize',
