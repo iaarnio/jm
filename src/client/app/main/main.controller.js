@@ -2,17 +2,17 @@
   'use strict';
 
   angular.module('jokumuuApp')
-    .controller('MainCtrl', MainCtrl);
+    .controller('MainController', MainController);
 
-  MainCtrl.$inject = ['logger'];
+  MainController.$inject = ['logger'];
 
-  function MainCtrl(logger) {
-    //var vm = this;
+  function MainController(logger) {
+    var vm = this;
 
     activate();
 
     function activate() {
-      logger.info('MainCtrl activated');
+      logger.info('MainController activated');
     }
 
   }

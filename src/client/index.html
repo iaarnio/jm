@@ -20,23 +20,26 @@
     <!-- endinject -->
   </head>
   
-  <body ng-app="jokumuuApp" layout="column">
-    <header>
-      <div ng-include="'app/menu/menu.html'"></div>
-    </header>
-    
-    <article>
-      <div ng-view=""></div>
-    </article>
-    
-    <footer class="footer" layout-align="center end">
-      <div class="container">
-          <p>Joku Muu service |
-            <a href="/">support link</a> |
-             <a href="/">terms etc</a></p>
-      </div>
-    </footer>
-
+  <body ng-app="jokumuuApp">
+    <div layout="column">
+      <header>
+  <!--      <div ng-include="'app/tabs/tabs.html'"></div>-->
+      </header>
+      
+      <article>
+        <div ng-include="'app/menu/menu.html'"></div>
+        <div ng-view=""></div>
+      </article>
+      
+      <footer class="footer">
+        <hr></hr>
+        <div layout="row" layout-align="center end">
+            <p>Joku Muu service |
+              <a href="/">support link</a> |
+               <a href="/">terms etc</a></p>
+        </div>
+      </footer>
+    </div>
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -53,7 +56,6 @@
     <script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
     <!-- endbower -->
 
-    <script src="app/app.js"></script>
     <!-- inject:js -->
       <script src="/app/core/core.module.js"></script>
       <script src="/app/blocks/logger/logger.module.js"></script>

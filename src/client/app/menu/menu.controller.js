@@ -9,13 +9,26 @@
   function MenuController(logger) {
     var vm = this;
 
+    vm.selected = false;
     vm.menu = [
       {
         'title': 'Home',
         'link': '/'
       },
       {
-        'title': 'Login',
+        'title': 'Job',
+        'link': '/'
+      },
+      {
+        'title': 'Apply',
+        'link': '/'
+      },
+      {
+        'title': 'Contract',
+        'link': '/'
+      },
+      {
+        'title': 'Profile',
         'link': '/'
       }
     ];

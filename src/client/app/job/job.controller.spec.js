@@ -18,7 +18,7 @@ describe('JobController', function() {
 
   beforeEach(inject(function ($controller, $rootScope) {
     var scope = $rootScope.$new();
-    JobCtrl = $controller('JobCtrl', {
+    JobCtrl = $controller('JobController', {
       vm: scope
     });
   }));

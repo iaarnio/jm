@@ -4,9 +4,9 @@
   angular.module('jokumuuApp')
     .factory('jobService', jobService);
 
-  jobService.$inject = ['$http', '$q', '$log'];
+  jobService.$inject = ['$http', '$q', 'logger'];
 
-  function jobService($http, $q, $log) {
+  function jobService($http, $q, logger) {
 
     return {
       listJobs: listJobs,
@@ -37,7 +37,7 @@
 
       function getJobsFail(message) {
         var errorMsg = 'XHR failed for getJobs: ' + message;
-        $log.error(errorMsg);
+        logger.error(errorMsg);
         $q.reject(errorMsg);
       }
     }

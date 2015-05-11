@@ -1,11 +1,9 @@
-<div ng-controller="MenuController as vm">
-  <md-toolbar layout="row">
-    <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show Menu">
-      <md-icon icon="menu"></md-icon>
-    </md-button>
-    <div ng-repeat="m in vm.menu">
-      <md-button class="md-primary md-raised" href="m.link">{{m.title}}</button>
-    </div>
-    <h1>JokuMuu</h1>
+<div ng-controller="MenuController as foo">
+  <md-toolbar md-component-id="left">
+      <div ng-repeat="menuitem in foo.menu">
+          <md-button href="menuitem.link" ng-class="{'selected' : menuitem === foo.selected }">
+            {{menuitem.name}}
+          </md-button>
+      </div>
   </md-toolbar>
 </div>

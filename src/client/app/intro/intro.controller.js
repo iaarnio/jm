@@ -2,16 +2,16 @@
   'use strict';
 
   angular.module('jokumuuApp')
-    .controller('IntroCtrl', IntroCtrl);
+    .controller('IntroController', IntroController);
 
-  IntroCtrl.$inject = ['logger'];
+  IntroController.$inject = ['logger'];
 
-  function IntroCtrl(logger) {
+  function IntroController(logger) {
 
     activate();
 
     function activate() {
-      logger.info('IntroCtrl activated');
+      logger.info('IntroController activated');
     }
   }
 })();

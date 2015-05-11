@@ -6,7 +6,7 @@
       $routeProvider
         .when('/intro', {
           templateUrl: 'app/intro/intro.html',
-          controller: 'IntroCtrl',
+          controller: 'IntroController',
           controllerAs: 'vm'
         });
     });
