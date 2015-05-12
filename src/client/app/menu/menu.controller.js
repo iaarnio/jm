@@ -10,7 +10,8 @@
     var vm = this;
 
     vm.selected = false;
-    vm.menu = [
+    vm.test = "TEST";
+    vm.choices = [
       {
         'title': 'Home',
         'link': '/'
