@@ -2,11 +2,11 @@
   'use strict';
 
   angular.module('jokumuuApp')
-    .controller('MenuController', MenuController);
+    .controller('SidemenuController', SidemenuController);
 
-  MenuController.$inject = ['logger'];
+  SidemenuController.$inject = ['logger'];
 
-  function MenuController(logger) {
+  function SidemenuController(logger) {
     var vm = this;
 
     vm.selected = false;
@@ -37,7 +37,7 @@
     activate();
 
     function activate() {
-      logger.info('MenuController activated');
+      logger.info('SidemenuController activated');
     }
 
   }
