@@ -1,52 +1,44 @@
 <div layout="column">
-  <h1>Login</h1>
+  <div class="md-whiteframe-z2" flex>
+    <h1>Login</h1>
+  
+    <p>Add here temporary easy access logins</p>
 
-  <p>Add here temporary easy access logins</p>
+    <form class="form" name="loginForm" layout-align="center"  ng-submit="vm.login(loginForm)" novalidate>
 
-    <div flex>
-      <form class="form" name="loginForm" ng-submit="vm.login(loginForm)" novalidate>
+      <md-input-container>
+        <label>Email</label>
+        <input type="email" name="email" ng-model="vm.user.email" required minlength="4">
+        <!--
+        <div ng-messages="loginForm.email.$error" ng-show="loginForm.email.$dirty">
+          <div ng-message="required">Email address is required!</div>
+          <div ng-message="minlength">Email is too short!</div>
+        </div>            
+        -->
+      </div>
 
-        <md-input-container>
-          <label>Email</label>
-          <input type="email" name="email" ng-model="vm.user.email" required minlength="4">
-          <div ng-messages="loginForm.email.$error" ng-show="loginForm.email.$dirty">
-            <div ng-message="required">Email address is required!</div>
-            <div ng-message="minlength">Email is too short!</div>
-          </div>            
+      <md-input-container>
+        <label>Password</label>
+        <input type="password" name="password" ng-model="vm.user.password" required minlength="4">
+        <!--
+        <div ng-messages="loginForm.password.$error" ng-show="loginForm.password.$dirty">
+          <div ng-message="required">Password is required!</div>
+          <div ng-message="minlength">Password is too short!</div>
         </div>
+        -->            
+      </div>
 
-        <md-input-container>
-          <label>Email</label>
-          <input type="password" name="password" ng-model="vm.user.password" required minlength="4">
-          <div ng-messages="loginForm.password.$error" ng-show="loginForm.password.$dirty">
-            <div ng-message="required">Password is required!</div>
-            <div ng-message="minlength">Password is too short!</div>
-          </div>            
-        </div>
+      <div layout="row">
+        <md-button class="md-primary md-raised" type="submit">
+          Login
+        </md-button>
+        <md-button class="md-primary md-raised" href="/signup">
+          Register
+        </md-button>
+      </div>
 
-        <div>
-          <md-button class="md-primary md-raised" type="submit">
-            Login
-          </button>
-          <md-button class="md-primary md-raised" href="/signup">
-            Register
-          </a>
-        </div>
-
-        <hr>
-        <div>
-          <a class="btn btn-facebook" href="" ng-click="vm.loginOauth('facebook')">
-            <i class="fa fa-facebook"></i> Connect with Facebook
-          </a>
-          <a class="btn btn-google-plus" href="" ng-click="vm.loginOauth('google')">
-            <i class="fa fa-google-plus"></i> Connect with Google+
-          </a>
-          <a class="btn btn-twitter" href="" ng-click="vm.loginOauth('twitter')">
-            <i class="fa fa-twitter"></i> Connect with Twitter
-          </a>
-        </div>
-      </form>
-    </div>
+      <div ng-include="'app/account/auth/oauth.html'"></div>
+        
+    </form>
   </div>
-  <hr>
 </div>
