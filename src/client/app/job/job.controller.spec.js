@@ -3,32 +3,44 @@
 'use strict';
 
 describe('JobController', function() {
-
-  var JobCtrl;
-
   beforeEach(module('jokumuuApp'));
 
   // Mock logger
-  beforeEach(module(function($provide) {
-    $provide.service('logger', function() {
-      this.log = jasmine.createSpy('log').andCallFake(function(msg, noToast) { });
-      this.logError = jasmine.createSpy('logError').andCallFake(function(msg, noToast) { });
-    });
+//  beforeEach(module(function($provide) {
+//    $provide.service('logger', function() {
+//      this.log = jasmine.createSpy('log').andCallFake(function(msg, noToast) { });
+//      this.logError = jasmine.createSpy('logError').andCallFake(function(msg, noToast) { });
+//    });
+//  }));
+
+  var $controller;
+  var scope;
+
+  beforeEach(inject(function(_$controller_, _$rootScope_){
+    $controller = _$controller_;
+    scope = _$rootScope_.$new();
   }));
 
-  beforeEach(inject(function ($controller, $rootScope) {
-    var scope = $rootScope.$new();
-    JobCtrl = $controller('JobController', {
-      vm: scope
+
+  describe('existance', function() {
+
+    var controller;
+  
+    beforeEach(function () {
+      controller = $controller('JobController', { vm: scope });
     });
-  }));
-
-  it ('should exist', function () {
-    expect(JobCtrl).isDefined;
-  });
-
-  it ('should populate jobs', function () {
-    JobCtrl.listJobs();
-    expect(scope.jobs.length).toBeGreaterThan(1);
+  
+    it ('should exist', function () {
+      expect(controller).isDefined;
+    });
+  
+    it ('should populate jobs', function () {
+      controller.listJobs();
+      console.log(scope);
+      console.log('jobs=' + controller.listJobs);
+      console.log('jobs=' + scope.jobs);
+      console.log('foo=' + scope.foo);
+      expect(scope.jobs.length).toBeGreaterThan(1);
+    });
   });
 });

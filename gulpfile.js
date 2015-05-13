@@ -12,6 +12,8 @@ gulp.task('help', $.taskListing);
 gulp.task('serve-dev', ['inject'], serveDev);
 gulp.task('inject', inject);
 gulp.task('watch', watch);
+gulp.task('test', test);
+gulp.task('autotest', autotest);
 gulp.task('mongo-start', mongoStart);
 gulp.task('mongo-stop', mongoStop);
 
@@ -58,6 +60,16 @@ function inject() {
     .pipe($.inject(sources, injectOptions))
     .pipe(gulp.dest(config.client));
 }
+
+
+function test(done) {
+  startTests(true /* singleRun */, done);
+}
+
+function autotest(done) {
+  startTests(false /* singleRun */, done);
+}
+
 
 function mongoStart() {
   log('Starting MongoDB');
@@ -123,6 +135,26 @@ function reloadBrowserSyncAfterDelay(delay) {
     browserSync.reload({stream: false});
   }, delay);
 }
+
+
+function startTests(singleRun, done) {
+    var karma = require('karma').server;
+
+    karma.start({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: !!singleRun
+    }, karmaCompleted);
+
+    function karmaCompleted(karmaResult) {
+        log('Karma completed!');
+        if (karmaResult === 1) {
+            done('karma: tests failed with code ' + karmaResult);
+        } else {
+            done();
+        }
+    }
+}
+
 
 // A display error function, to format and make custom errors more uniform
 // Could be combined with gulp-util or npm colors for nicer output

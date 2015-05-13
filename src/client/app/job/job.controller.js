@@ -24,10 +24,13 @@
     }
 
     function listJobs() {
-      logger.info('JobController listJobs');
+//      logger.info('JobController listJobs');
+      vm.foo="bar";
       jobService.listJobs()
         .then(function (jobs) {
           vm.jobs = jobs;
+        }, function (err) {
+          vm.jobs = err;
         });
     }
 

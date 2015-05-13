@@ -11,19 +11,25 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'client/bower_components/jquery/dist/jquery.js',
-      'client/bower_components/angular/angular.js',
-      'client/bower_components/angular-mocks/angular-mocks.js',
-      'client/bower_components/angular-resource/angular-resource.js',
-      'client/bower_components/angular-cookies/angular-cookies.js',
-      'client/bower_components/angular-sanitize/angular-sanitize.js',
-      'client/bower_components/angular-route/angular-route.js',
-      'client/bower_components/lodash/dist/lodash.compat.js',
-      'client/app/app.js',
-      'client/app/**/*.js',
-      'client/components/**/*.js',
-      'client/app/**/*.html',
-      'client/components/**/*.html'
+      'src/client/bower_components/jquery/dist/jquery.js',
+      'src/client/bower_components/angular/angular.js',
+      'src/client/bower_components/angular-mocks/angular-mocks.js',
+      'src/client/bower_components/angular-cookies/angular-cookies.js',
+      'src/client/bower_components/angular-sanitize/angular-sanitize.js',
+      'src/client/bower_components/angular-route/angular-route.js',
+      'src/client/bower_components/lodash/dist/lodash.compat.js',
+      'src/client/bower_components/angular-resource/angular-resource.js',
+      'src/client/bower_components/angular-animate/angular-animate.js',
+      'src/client/bower_components/angular-aria/angular-aria.js',
+      'src/client/bower_components/angular-material/angular-material.js',
+      'src/client/bower_components/toastr/toastr.js',
+      'src/client/bower_components/moment/moment.js',
+      'src/client/bower_components/angular-material-icons/angular-material-icons.min.js',
+    
+      'src/client/app/**/*.module.js',
+      'src/client/app/app.js',
+      'src/client/app/**/*.js',
+      'src/client/app/**/*.html'
     ],
 
     preprocessors: {
@@ -31,11 +37,11 @@ module.exports = function(config) {
     },
 
     ngHtml2JsPreprocessor: {
-      stripPrefix: 'client/'
+      stripPrefix: 'src/client/'
     },
 
     ngJade2JsPreprocessor: {
-      stripPrefix: 'client/'
+      stripPrefix: 'src/client/'
     },
 
     // list of files / patterns to exclude
@@ -50,8 +56,10 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
+
+    colors: true,
 
     // Start these browsers, currently available:
     // - Chrome
