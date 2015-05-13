@@ -1,15 +1,20 @@
 <section ng-controller="MenuController as vm">
-  <p>{{vm.test}}</p>
-<!--  <md-toolbar md-component-id="left">-->
 
-  <p>{{vm.choices[1].title}}</p>
-  <p>{{vm.choices[2].title}}</p>
-      <md-button href="vm.choices[0].link" ng-class="{'selected' : 0 === foo.selected }">
-        {{vm.choices[0].title}}
+  <md-toolbar md-component-id="left">
+    <div flex layout="column">
+      <div layout="row" layout-align="center">
+        <h3 class="md-accent">JokuMuu</h3>
+        <ng-md-icon size="70" style="fill:#ffffff" icon="people"</ng-md-icon>
+      </div>
+      <!-- fill up the space between left and right area -->
+     <span flex></span>
+      <md-button class="md-raised" href="/seek"><!-- ng-class="{'selected' : 0 === foo.selected }">-->
+        Seek job
       </md-button>
-    <ul ng-repeat="c in vm.choices" ng-controller="MenuController as vm">
-      <li>{{c.title}}</li>
-      <md-button primary>aaaaaaa</md-button>
-    </ul>
-
+      <md-button class="md-raised" href="/offer">
+        Offer job
+      </md-button>
+    </div>
+  </md-toolbar>
+    
 </section>

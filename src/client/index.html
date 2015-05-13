@@ -17,29 +17,28 @@
     <!-- endbower -->
 
     <!-- inject:css -->
+    <link rel="stylesheet" href="/app/app.css">
     <!-- endinject -->
   </head>
   
-  <body ng-app="jokumuuApp">
-    <div layout="column">
-      <header>
-  <!--      <div ng-include="'app/tabs/tabs.html'"></div>-->
-      </header>
-      
-      <article>
-        <div flex layout="row">
+  <body ng-app="jokumuuApp" class="box">
+    <div flex layout="column" layout-fill>
+      <article flex layout="row" layout-fill>
+        <header class="row header">
           <div ng-include="'app/menu/menu.html'"></div>
-          <div ng-view=""></div>
-        </div>
+        </header>
+        
+        <section class="row content">
+          <div layout="row">
+            <div ng-view="" layout-fill></div>
+          </div>
+        </section>
       </article>
-      
-      <footer class="footer">
-        <hr></hr>
-        <div layout="row" layout-align="center end">
-            <p>Joku Muu service |
-              <a href="/">support link</a> |
-               <a href="/">terms etc</a></p>
-        </div>
+        
+      <footer class="row footer">
+        <p>Joku Muu service |
+        <a href="/">support link</a> |
+        <a href="/">terms etc</a></p>
       </footer>
     </div>
     <!-- bower:js -->
@@ -64,14 +63,14 @@
       <script src="/app/app.js"></script>
       <script src="/app/core/config.js"></script>
       <script src="/app/core/constants.js"></script>
-      <script src="/app/menu/menu.controller.js"></script>
+      <script src="/app/intro/intro.controller.js"></script>
+      <script src="/app/intro/intro.js"></script>
       <script src="/app/main/main.controller.js"></script>
       <script src="/app/main/main.js"></script>
       <script src="/app/job/job.controller.js"></script>
       <script src="/app/job/job.js"></script>
       <script src="/app/job/job.service.js"></script>
-      <script src="/app/intro/intro.controller.js"></script>
-      <script src="/app/intro/intro.js"></script>
+      <script src="/app/menu/menu.controller.js"></script>
       <script src="/app/blocks/logger/logger.js"></script>
       <!-- endinject -->
   </body>

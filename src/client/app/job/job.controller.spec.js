@@ -1,4 +1,4 @@
-/// <reference path="../../../typings/jasmine/jasmine.d.ts"/>
+/// <reference path="../../../../typings/jasmine/jasmine.d.ts"/>
 /* jshint -W117, -W030 */
 'use strict';
 

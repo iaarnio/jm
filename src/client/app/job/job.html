@@ -1,16 +1,16 @@
-<header id="header">
-  <div class="container">
-    <h1>Available jobs</h1>
-  </div>
-</header>
+<section flex>
+  <md-tabs class="md-primary" flex>
+    <md-tab class="primary" label="Browse jobs"></md-tab>
+    <md-tab class="primary" label="My jobs"></md-tab>
+    <span flex></span>
+  </md-tabs>
+</section>
 
-<div class="span12">
-  <div class="container">
-    <div class="row highlighted-row">
-      <span class="span3">Title</span>
-      <span class="span3">Employer</span>
-<!--      <span class="span5">Requirements</span>
-      <span class="span1">#</span>-->
+<section>
+  <div>
+    <div>
+      <span>Title</span>
+      <span>Employer</span>
     </div>
     <div class="row" ng-repeat="job in vm.jobs">
       <span class="span3">{{job.title}}</span>
@@ -19,5 +19,5 @@
       <span class="span1">{{job.amount}}</span>-->
     </div>
   </div>
-</div>
+</section>
 
