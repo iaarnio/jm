@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('jokumuuApp')
+  angular.module('account')
     .controller('LoginCtrl', LoginCtrl);
 
   LoginCtrl.$inject = ['Auth', '$location', '$window', 'logger'];

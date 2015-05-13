@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('jokumuuApp')
+  angular.module('account')
     .config(function ($routeProvider) {
       $routeProvider
         .when('/login', {

@@ -6,7 +6,7 @@
       $routeProvider
         .when('/job', {
           templateUrl: 'app/job/job.html',
-          controller: 'JobCtrl',
+          controller: 'JobController',
           controllerAs: 'vm'
         });
     });

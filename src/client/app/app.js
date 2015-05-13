@@ -3,7 +3,8 @@
   'use strict';
 
   angular.module('jokumuuApp', [
-    'core'
+    'core',
+    'account'
   ])
     .config(function ($routeProvider, $locationProvider, $httpProvider) {
       $routeProvider
