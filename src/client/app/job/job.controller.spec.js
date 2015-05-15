@@ -13,34 +13,54 @@ describe('JobController', function() {
 //    });
 //  }));
 
-  var $controller;
+  var controller;
   var scope;
 
-  beforeEach(inject(function(_$controller_, _$rootScope_){
-    $controller = _$controller_;
-    scope = _$rootScope_.$new();
+  beforeEach(inject(function($controller, $rootScope){
+    scope = $rootScope.$new();
+    controller = $controller('JobController', { vm: scope });
   }));
 
-
-  describe('existance', function() {
-
-    var controller;
   
-    beforeEach(function () {
-      controller = $controller('JobController', { vm: scope });
+  describe('instance', function() {
+  
+    it ('should be defined', function () {
+      expect(controller).toBeDefined;
     });
+
+  });
+
   
-    it ('should exist', function () {
-      expect(controller).isDefined;
-    });
-  
-    it ('should populate jobs', function () {
+  describe('mocked results', function() {
+
+    var $httpBackend;
+    var mockedData = [
+        {
+          title: 'eka job name',
+          employer: 'employer1'
+        },
+        {
+          title: 'toka job name',
+          employer: 'employer2'
+        }
+      ];
+    
+    beforeEach(inject(function(_$httpBackend_) {
+      $httpBackend = _$httpBackend_;
+    }));
+    
+    afterEach(function() {
+      $httpBackend.verifyNoOutstandingExpectation();
+      $httpBackend.verifyNoOutstandingRequest();
+    });    
+    
+    it ('should get all jobs', function () {
+      
+      $httpBackend.when('GET', '/api/jobs').respond(200, mockedData);
       controller.listJobs();
-      console.log(scope);
-      console.log('jobs=' + controller.listJobs);
-      console.log('jobs=' + scope.jobs);
-      console.log('foo=' + scope.foo);
-      expect(scope.jobs.length).toBeGreaterThan(1);
+      $httpBackend.flush();      
+      
+      expect(controller.jobs.length).toBeGreaterThan(1);
     });
   });
 });
