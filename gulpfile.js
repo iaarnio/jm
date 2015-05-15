@@ -12,6 +12,7 @@ gulp.task('help', $.taskListing);
 gulp.task('serve-dev', ['inject'], serveDev);
 gulp.task('inject', inject);
 gulp.task('watch', watch);
+gulp.task('lint', lint);
 gulp.task('test', test);
 gulp.task('autotest', autotest);
 gulp.task('mongo-start', mongoStart);
@@ -27,23 +28,34 @@ function serveDev() {
   };
 
   return $.nodemon(nodeOptions)
-    .on('restart', function() {
-      log('nodemon restarting');
-      reloadBrowserSyncAfterDelay(config.startBrowsersyncDelay);
-    })
-    .on('start', function() {
-      log('nodemon starting');
-      startBrowserSync();
-    });
+    .on('restart', function () {
+    log('nodemon restarting');
+    reloadBrowserSyncAfterDelay(config.startBrowsersyncDelay);
+  })
+    .on('start', function () {
+    log('nodemon starting');
+    startBrowserSync();
+  });
 }
 
 function watch() {
   log('Starting to watch .scss changes');
   gulp.watch(config.styles.files, ['sass'])
-    //.pipe($.plumber())
-    .on('change', function(evt) {
-      log('[watcher] File ' + evt.path.replace(/.*(?=sass)/,'') + ' was ' + evt.type + ', compiling...');
-    });
+  //.pipe($.plumber())
+    .on('change', function (evt) {
+    log('[watcher] File ' + evt.path.replace(/.*(?=sass)/, '') + ' was ' + evt.type + ', compiling...');
+  });
+}
+
+function lint() {
+  log('Analyzing source with JSHint and JSCS');
+  return gulp
+    .src(config.alljs)
+    .pipe($.if(args.verbose, $.print()))
+//    .pipe($.jscs())
+    .pipe($.jshint())
+    .pipe($.jshint.reporter('jshint-stylish', {verbose: true}))
+    .pipe($.jshint.reporter('fail'));
 }
 
 function inject() {
@@ -61,7 +73,6 @@ function inject() {
     .pipe(gulp.dest(config.client));
 }
 
-
 function test(done) {
   startTests(true /* singleRun */, done);
 }
@@ -69,7 +80,6 @@ function test(done) {
 function autotest(done) {
   startTests(false /* singleRun */, done);
 }
-
 
 function mongoStart() {
   log('Starting MongoDB');
@@ -80,7 +90,6 @@ function mongoStop() {
   log('Stopping MongoDB');
   runCommand('mongo admin --eval "db.shutdownServer();"');
 }
-
 
 /* Utility functions */
 
@@ -104,14 +113,14 @@ function startBrowserSync() {
 
   log('Starting browser sync on port ' + port);
 
-  var options =  {
+  var options = {
     proxy: 'localhost:' + port,
     port: 3000,
     files: [
       config.client + '**/*.*',
       '!' + config.client + '**/*.scss',
       config.temp + '**/*.css'
-      ],
+    ],
     ghostMode: {
       clicks: true,
       location: false,
@@ -130,53 +139,50 @@ function startBrowserSync() {
 }
 
 function reloadBrowserSyncAfterDelay(delay) {
-  setTimeout(function() {
+  setTimeout(function () {
     browserSync.notify('reloading now...');
     browserSync.reload({stream: false});
   }, delay);
 }
 
-
 function startTests(singleRun, done) {
-    var karma = require('karma').server;
+  var karma = require('karma').server;
 
-    karma.start({
-        configFile: __dirname + '/karma.conf.js',
-        singleRun: !!singleRun
-    }, karmaCompleted);
+  karma.start({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: !!singleRun
+  }, karmaCompleted);
 
-    function karmaCompleted(karmaResult) {
-        log('Karma completed!');
-        if (karmaResult === 1) {
-            done('karma: tests failed with code ' + karmaResult);
-        } else {
-            done();
-        }
+  function karmaCompleted(karmaResult) {
+    log('Karma completed!');
+    if (karmaResult === 1) {
+      done('karma: tests failed with code ' + karmaResult);
+    } else {
+      done();
     }
+  }
 }
-
 
 // A display error function, to format and make custom errors more uniform
 // Could be combined with gulp-util or npm colors for nicer output
-function displayError(error) {
-
-  // Initial building up of the error
-  var errorString = '[' + error.plugin + ']';
-  errorString += ' ' + error.message.replace("\n",''); // Removes new line at the end
-
-  // If the error contains the filename or line number add it to the string
-  if (error.fileName)
-    errorString += ' in ' + error.fileName;
-
-  if (error.lineNumber)
-    errorString += ' on line ' + error.lineNumber;
-
-  // This will output an error like the following:
-  // [gulp-sass] error message in file_name on line 1
-  console.error(errorString);
-};
-
+//function displayError(error) {
+//
+//  // Initial building up of the error
+//  var errorString = '[' + error.plugin + ']';
+//  errorString += ' ' + error.message.replace("\n", ''); // Removes new line at the end
+//
+//  // If the error contains the filename or line number add it to the string
+//  if (error.fileName)
+//    errorString += ' in ' + error.fileName;
+//
+//  if (error.lineNumber)
+//    errorString += ' on line ' + error.lineNumber;
+//
+//  // This will output an error like the following:
+//  // [gulp-sass] error message in file_name on line 1
+//  console.error(errorString);
+//};
 
 function log(msg) {
-	$.util.log($.util.colors.blue(msg));
+  $.util.log($.util.colors.blue(msg));
 }
