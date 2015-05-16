@@ -1,3 +1,4 @@
+/// <reference path="../../../../typings/angularjs/angular.d.ts"/>
 (function () {
   'use strict';
 
@@ -24,8 +25,6 @@
     }
 
     function listJobs() {
-//      logger.info('JobController listJobs');
-      vm.foo="bar";
       jobService.listJobs()
         .then(function (jobs) {
           vm.jobs = jobs;

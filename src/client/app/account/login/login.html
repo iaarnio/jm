@@ -15,7 +15,7 @@
           <div ng-message="minlength">Email is too short!</div>
         </div>            
         -->
-      </div>
+      </md-input-container>
 
       <md-input-container>
         <label>Password</label>
@@ -26,10 +26,10 @@
           <div ng-message="minlength">Password is too short!</div>
         </div>
         -->            
-      </div>
+      </md-input-container>
 
       <div layout="row">
-        <md-button class="md-primary md-raised" type="submit">
+        <md-button class="md-primary md-raised" ng-disabled="loginForm.$invalid" type="submit">
           Login
         </md-button>
         <md-button class="md-primary md-raised" href="/signup">

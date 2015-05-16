@@ -1,3 +1,4 @@
+/* jshint -W117 */
 'use strict';
 
 var should = require('should');

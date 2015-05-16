@@ -17,21 +17,11 @@
     };
 
     function listJobs() {
-//      var jobs = [
-//        {
-//          title: 'eka job name',
-//          employer: 'employer1'
-//        },
-//        {
-//          title: 'toka job name',
-//          employer: 'employer2'
-//        }
-//      ];
       return $http.get('/api/jobs')
         .then(getJobsComplete)
         .catch(getJobsFail);
       
-      function getJobsComplete(response, status, headers, config) {
+      function getJobsComplete(response) {
         return response.data;
       }
 

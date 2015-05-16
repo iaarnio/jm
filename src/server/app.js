@@ -31,15 +31,34 @@ server.listen(config.port, config.ip);
 server.on('error', onError);
 server.on('listening', onListening);
 
+// API routes
+app.use('/api/jobs', require('./api/job'));
+app.use('/api/users', require('./api/user'));
+
+app.use('/auth', require('./auth'));
+
+// All undefined asset or api routes should return a 404
+app
+  .route('/:url(api|auth|components|app|bower_components|assets)/*')
+  .get(errors[404]);
+
+// UI routes (all others)
+app.use('/', express.static('./src/client'));
+    
+// Event listener for HTTP server "listening" event.
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+  console.log('Listening on ' + bind);
+}
+
 // Event listener for HTTP server "error" event.
 function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
   }
 
-  var bind = typeof config.port === 'string'
-    ? 'Pipe ' + config.port
-    : 'Port ' + config.port;
+  var bind = typeof config.port === 'string' ? 'Pipe ' + config.port : 'Port ' + config.port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -55,31 +74,6 @@ function onError(error) {
       throw error;
   }
 }
-
-  // API routes
-  app.use('/api/jobs', require('./api/job'));
-
-  // All undefined asset or api routes should return a 404
-  app.route('/:url(api|components|app|bower_components|assets)/*')
-    .get(errors[404]);
-
-  // UI routes (all others)
-  app.use('/', express.static('./src/client'));
-    
-//  app.get('/*', function (req, res) {
-//    res.sendfile('client' + req.url);
-//  });
-
-
-// Event listener for HTTP server "listening" event.
-function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  console.log('Listening on ' + bind);
-}
-
 
 // Expose app
 module.exports = app;

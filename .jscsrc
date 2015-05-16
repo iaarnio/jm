@@ -49,8 +49,8 @@
     "requireSpacesInConditionalExpression": true,
     "requireSpaceBeforeBlockStatements": true,
     "requireLineFeedAtFileEnd": true,
-    "disallowSpacesInsideObjectBrackets": "all",
-    "disallowSpacesInsideArrayBrackets": "all",
+    "disallowSpacesInsideObjectBrackets": true,
+    "disallowSpacesInsideArrayBrackets": true,
     "disallowSpacesInsideParentheses": true,
 
     "validateJSDoc": {
@@ -61,12 +61,11 @@
     "disallowMultipleLineBreaks": true,
 
     "disallowCommaBeforeLineBreak": null,
-    "disallowDanglingUnderscores": null,
-    "disallowEmptyBlocks": null,
-    "disallowMultipleLineStrings": null,
-    "disallowTrailingComma": null,
-    "requireCommaBeforeLineBreak": null,
-    "requireDotNotation": null,
-    "requireMultipleVarDecl": null,
+    "disallowDanglingUnderscores": true,
+    "disallowEmptyBlocks": true,
+    "disallowTrailingComma": true,
+    "requireCommaBeforeLineBreak": true,
+    "requireDotNotation": true,
+    "requireMultipleVarDecl": true,
     "requireParenthesesAroundIIFE": true
 }

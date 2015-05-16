@@ -10,7 +10,6 @@
     var vm = this;
 
     vm.selected = false;
-    vm.test = "TEST";
     vm.choices = [
       {
         'title': 'Home',
