@@ -13,7 +13,7 @@ var validationError = function(res, err) {
  * Get list of users
  * restriction: 'admin'
  */
-exports.index = function(req, res) {
+function index(req, res) {
   User.find({}, '-salt -hashedPassword', function (err, users) {
     if(err) return res.send(500, err);
     res.json(200, users);
@@ -23,7 +23,7 @@ exports.index = function(req, res) {
 /**
  * Creates a new user
  */
-exports.create = function (req, res, next) {
+function create(req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
   newUser.role = 'user';
@@ -37,7 +37,7 @@ exports.create = function (req, res, next) {
 /**
  * Get a single user
  */
-exports.show = function (req, res, next) {
+function show(req, res, next) {
   var userId = req.params.id;
 
   User.findById(userId, function (err, user) {
@@ -51,7 +51,7 @@ exports.show = function (req, res, next) {
  * Deletes a user
  * restriction: 'admin'
  */
-exports.destroy = function(req, res) {
+function destroy(req, res) {
   User.findByIdAndRemove(req.params.id, function(err, user) {
     if(err) return res.send(500, err);
     return res.send(204);
@@ -61,7 +61,7 @@ exports.destroy = function(req, res) {
 /**
  * Change a users password
  */
-exports.changePassword = function(req, res, next) {
+function changePassword(req, res, next) {
   var userId = req.user._id;
   var oldPass = String(req.body.oldPassword);
   var newPass = String(req.body.newPassword);
@@ -82,7 +82,7 @@ exports.changePassword = function(req, res, next) {
 /**
  * Get my info
  */
-exports.me = function(req, res, next) {
+function me(req, res, next) {
   var userId = req.user._id;
   User.findOne({
     _id: userId
@@ -96,6 +96,19 @@ exports.me = function(req, res, next) {
 /**
  * Authentication callback
  */
-exports.authCallback = function(req, res, next) {
+function authCallback(req, res, next) {
   res.redirect('/');
 };
+
+
+exports.index = index;
+exports.create = create;
+exports.show = show;
+exports.destroy = destroy;
+exports.changePassword = changePassword;
+exports.me = me;
+exports.authCallback = authCallback;
+
+
+
+

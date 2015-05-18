@@ -4,18 +4,27 @@ module.exports = function () {
   var bower = client + 'bower_components/';
   var server = './src/server/';
 
-  var config = {
-
-    //  File paths
-    alljs: [
-      './src/client/app/**/*.js',
-      './src/server/**/*.js',
-      './*.js'
-    ],
-    js: [
+  var clientjs = [
       clientApp + '**/*.module.js',
       clientApp + '**/*.js',
       '!' + clientApp + '**/*.spec.js'
+    ];
+  var serverjs = [
+      './src/server/**/*.js'
+    ];
+  var tooljs = [
+      './*.js'
+    ];
+
+  var config = {
+
+    //  File paths
+    clientjs: clientjs,
+    serverjs: serverjs,
+    alljs: [
+      clientjs,
+      serverjs,
+      tooljs
     ],
     css: clientApp + '**/*.css',
     images: client + 'assets/images/**/*.*',

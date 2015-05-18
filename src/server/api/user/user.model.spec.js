@@ -1,6 +1,8 @@
 /* jshint -W117 */
 'use strict';
 
+process.env.NODE_ENV = 'test';
+
 var should = require('should');
 var app = require('../../app');
 var User = require('./user.model');

@@ -15,6 +15,7 @@ gulp.task('watch', watch);
 gulp.task('lint', lint);
 gulp.task('test', test);
 gulp.task('autotest', autotest);
+gulp.task('testnode', testnode);
 gulp.task('mongo-start', mongoStart);
 gulp.task('mongo-stop', mongoStop);
 
@@ -62,7 +63,7 @@ function inject() {
   log('Wire up the bower js & css and app js into the index.html');
   var wiredep = require('wiredep').stream;
   var wiredepOptions = config.getWiredepOptions();
-  var jsAndCss = [].concat(config.js, config.css);
+  var jsAndCss = [].concat(config.clientjs, config.css);
   var sources = gulp.src(jsAndCss, {read: false});
   var injectOptions = config.getInjectOptions();
 
@@ -79,6 +80,18 @@ function test(done) {
 
 function autotest(done) {
   startTests(false /* singleRun */, done);
+}
+
+function testnode(done) {
+  return gulp
+    .src(config.server + '**/*.spec.js', {read: false})
+    .pipe($.mocha())
+    .once('error', function () {
+      process.exit(1);
+    })
+    .once('end', function () {
+      process.exit();
+    });
 }
 
 function mongoStart() {
