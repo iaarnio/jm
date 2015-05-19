@@ -21,11 +21,7 @@ module.exports = function () {
     //  File paths
     clientjs: clientjs,
     serverjs: serverjs,
-    alljs: [
-      clientjs,
-      serverjs,
-      tooljs
-    ],
+    alljs: [].concat(clientjs, serverjs, tooljs),
     css: clientApp + '**/*.css',
     images: client + 'assets/images/**/*.*',
     index: client + 'index.html',

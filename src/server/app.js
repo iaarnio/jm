@@ -34,6 +34,7 @@ server.on('listening', onListening);
 // API routes
 app.use('/api/jobs', require('./api/job'));
 app.use('/api/users', require('./api/user'));
+app.use('/api/applicants', require('./api/applicant'));
 
 app.use('/auth', require('./auth'));
 
@@ -44,7 +45,7 @@ app
 
 // UI routes (all others)
 app.use('/', express.static('./src/client'));
-    
+
 // Event listener for HTTP server "listening" event.
 function onListening() {
   var addr = server.address();

@@ -2,7 +2,7 @@
   'use strict';
 
   var _ = require('lodash');
-  var Job = require('./job.model');
+  var Applicant = require('./applicant.model');
 
   module.exports = {
     list: list,
@@ -13,7 +13,7 @@
   };
 
   function list(req, res) {
-    Job.find(function (err, job) {
+    Applicant.find(function (err, job) {
       if (err) {
         return handleError(res, err);
       }
@@ -22,7 +22,7 @@
   }
 
   function get(req, res) {
-    Job.findById(req.params.id, function (err, job) {
+    Applicant.findById(req.params.id, function (err, job) {
       if (err) {
         return handleError(res, err);
       }
@@ -34,7 +34,7 @@
   }
 
   function create(req, res) {
-    Job.create(req.body, function (err, job) {
+    Applicant.create(req.body, function (err, job) {
       if (err) {
         return handleError(res, err);
       }
@@ -46,7 +46,7 @@
     if (req.body._id) {
       delete req.body._id;
     }
-    Job.findById(req.params.id, function (err, job) {
+    Applicant.findById(req.params.id, function (err, job) {
       if (err) {
         return handleError(res, err);
       }
@@ -64,7 +64,7 @@
   }
 
   function remove(req, res) {
-    Job.findById(req.params.id, function (err, job) {
+    Applicant.findById(req.params.id, function (err, job) {
       if (err) {
         return handleError(res, err);
       }

@@ -52,6 +52,7 @@ function lint() {
   log('Analyzing source with JSHint and JSCS');
   return gulp
     .src(config.alljs)
+    .pipe($.debug())
     .pipe($.if(args.verbose, $.print()))
 //    .pipe($.jscs())
     .pipe($.jshint())

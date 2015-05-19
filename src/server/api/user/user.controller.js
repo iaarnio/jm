@@ -9,6 +9,16 @@ var validationError = function(res, err) {
   return res.json(422, err);
 };
 
+module.exports = {
+  index: index,
+  create: create,
+  show: show,
+  destroy: destroy,
+  changePassword: changePassword,
+  me: me,
+  authCallback: authCallback
+};
+
 /**
  * Get list of users
  * restriction: 'admin'
@@ -99,16 +109,3 @@ function me(req, res, next) {
 function authCallback(req, res, next) {
   res.redirect('/');
 };
-
-
-exports.index = index;
-exports.create = create;
-exports.show = show;
-exports.destroy = destroy;
-exports.changePassword = changePassword;
-exports.me = me;
-exports.authCallback = authCallback;
-
-
-
-
