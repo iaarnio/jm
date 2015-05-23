@@ -9,7 +9,7 @@
 <section class="whiteframe-z2">
   <div>
     
-    <table id="table" class="table table-hover table-mc-light-blue">
+    <table id="table" border="1" > <!--</table>class="table table-hover table-mc-light-blue">-->
       <thead>
         <tr>
           <th>Title</th>
@@ -17,7 +17,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="job in vm.jobs">
+        <tr ng-repeat="job in vm.jobs"
+            ng-class-even="even"
+            ng-class-odd="odd">
           <td data-title="Title">{{job.title}}</td>
           <td data-title="Employer">{{job.employer}}</td>
         </tr>    
