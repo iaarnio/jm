@@ -1,4 +1,4 @@
-# jokumuu - a hobby project
+# jokumuu - a hobby project     [![Build Status](https://travis-ci.org/iaarnio/jokumuu.svg?branch=master)](https://travis-ci.org/iaarnio/jokumuu)
 
 
 
