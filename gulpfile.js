@@ -121,7 +121,7 @@ function runCommand(command) {
 }
 
 function startBrowserSync() {
-  if (args.nosync || browserSync.active) {
+  if (!args.sync || browserSync.active) {
     return;
   }
 
