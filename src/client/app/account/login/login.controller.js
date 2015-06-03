@@ -23,7 +23,7 @@
     }
 
     function login(form) {
-      logger.info('login');
+      logger.info('Login: login');
       vm.submitted = true;
 
       if (form.$valid) {

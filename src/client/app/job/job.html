@@ -9,7 +9,20 @@
 <section class="whiteframe-z2">
   <div>
     
-    <table id="table" border="1" > <!--</table>class="table table-hover table-mc-light-blue">-->
+    <md-content>
+      <md-list>
+        <md-list-item class="md-2-line" ng-repeat="job in vm.jobs">
+          <md-checkbox ng-model="job.bookmark"></md-checkbox>
+          <div class="md-list-item-text">
+            <h3>{{job.title}}</h3>
+            <p>{{job.employer}}</p>
+          </div>
+        </md-list-item>
+      </md-list>
+    </md-content>    
+
+<!--    
+    <table id="table" border="1" > 
       <thead>
         <tr>
           <th>Title</th>
@@ -25,6 +38,7 @@
         </tr>    
       </tbody>
     </table>
+    -->
     
   </div>
 </section>

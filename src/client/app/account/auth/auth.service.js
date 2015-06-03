@@ -27,6 +27,8 @@ angular.module('jokumuuApp')
      * @return {Promise}
      */
     function login(user, callback) {
+      logger.info('Auth: login');
+      
       var cb = callback || angular.noop;
       var deferred = $q.defer();
 
