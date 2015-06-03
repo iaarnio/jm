@@ -44,7 +44,7 @@ app
   .get(errors[404]);
 
 // UI routes (all others)
-app.use('/', express.static('./src/client'));
+app.use('/*', express.static('./src/client'));
 
 // Event listener for HTTP server "listening" event.
 function onListening() {
