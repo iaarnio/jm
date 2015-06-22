@@ -20,8 +20,6 @@
       return {
         // Add authorization token to headers
         request: function (config) {
-          logger.info('auth interceptor');
-          
           config.headers = config.headers || {};
           if ($cookieStore.get('token')) {
             config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
