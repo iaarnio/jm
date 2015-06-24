@@ -4,11 +4,12 @@
   angular.module('jokumuuApp')
     .controller('SidemenuController', SidemenuController);
 
-  SidemenuController.$inject = ['logger'];
+  SidemenuController.$inject = ['logger', 'User'];
 
-  function SidemenuController(logger) {
+  function SidemenuController(logger, User) {
     var vm = this;
 
+    vm.currentUser = {};
     vm.selected = false;
     vm.choices = [
       {
@@ -37,6 +38,9 @@
 
     function activate() {
       logger.info('SidemenuController activated');
+      User.get(function(user) {
+          vm.currentUser = user;
+      });
     }
 
   }
