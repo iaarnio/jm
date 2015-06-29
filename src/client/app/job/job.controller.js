@@ -10,7 +10,7 @@
   function JobController(jobService, logger) {
     var vm = this;
 
-    vm.jobs = [{name: 'initial'}];
+    vm.jobs = [];
     vm.listJobs = listJobs;
     vm.viewJob = viewJob;
     vm.addJob = addJob;
