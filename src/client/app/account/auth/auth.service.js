@@ -110,7 +110,7 @@ angular.module('jokumuuApp')
      * @return {Object} user
      */
     function getCurrentUser() {
-      logger.info('getCurrentUser:' + currentUser);
+      //logger.log('getCurrentUser:' + currentUser.name);
       return currentUser;
     }
 

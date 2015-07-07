@@ -2,7 +2,10 @@
   <div class="md-whiteframe-z2" flex>
     <h1>Login</h1>
   
-    <p>Add here temporary easy access logins</p>
+    <div>Temporary easy access buttons:</div>
+    <md-button class="md-button md-raised" ng-aria="test user" ng-click="vm.fillTestUser()">test@test.com</md-button>
+    <md-button class="md-button md-raised" ng-aria="admin user" ng-click="vm.fillAdminUser()">admin@admin.com</md-button>
+    <md-button class="md-button md-raised" ng-aria="dummy user" ng-click="vm.fillDummyUser()">a dummy user</md-button>
 
     <form class="form" name="loginForm" layout-align="center"  ng-submit="vm.login(loginForm)" novalidate>
 

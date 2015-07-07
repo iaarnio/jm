@@ -15,6 +15,9 @@
 
     vm.login = login;
     vm.loginOauth = loginOauth;
+    vm.fillTestUser = fillTestUser;
+    vm.fillAdminUser = fillAdminUser;
+    vm.fillDummyUser = fillDummyUser;
 
     activate();
 
@@ -43,6 +46,21 @@
 
     function loginOauth(provider) {
       $window.location.href = '/auth/' + provider;
+    }
+    
+    
+    // Temporary easy access / easy testing form fillers
+    function fillTestUser() {
+      vm.user.email = 'test@test.com';
+      vm.user.password = 'test'
+    }
+    function fillAdminUser() {
+      vm.user.email = 'admin@admin.com';
+      vm.user.password = 'admin'
+    }
+    function fillDummyUser() {
+      vm.user.email = 'dummy@illegal.com';
+      vm.user.password = 'test'
     }
   }
 })();

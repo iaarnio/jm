@@ -11,9 +11,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <!-- endbower -->
 
     <!-- inject:css -->
@@ -21,38 +21,41 @@
     <!-- endinject -->
   </head>
   
-  <body ng-app="jokumuuApp">
-    <div flex layout="column" layout-fill>
-      <div flex layout="row">
-        <header flex="25" class="app-bg">
-          <div flex ng-include="'app/sidemenu/sidemenu.html'"></div>
-        </header>
-        
-        <section flex>
-          <div flex ng-view=""></div>
-        </section>
-      </div>
-        
-      <footer layout="row" layout-align="center end" class="footer">
-        <p>JokuMuu service |
-        <a href="/">support link</a> |
-        <a href="/">terms etc</a></p>
-      </footer>
+  <body layout="column" ng-app="jokumuuApp">
+    <jm-toolbar></jm-toolbar>
+    
+    <div layout="row" flex>
+        <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+          <md-button class="md-raised" href="/job">seek job</md-button>
+          <md-button class="md-raised" href="/offer">nearby jobs</md-button>
+        </md-sidenav>
+        <div layout="column" flex id="content">
+            <md-content layout="column" flex class="md-padding">
+              <div flex ng-view=""></div>
+            </md-content>
+        </div>
     </div>
+        
+    <footer layout="row" layout-align="center end" class="footer">
+      <p>JokuMuu service |
+      <a href="/">support link</a> |
+      <a href="/">terms etc</a></p>
+    </footer>
+
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
     <script src="bower_components/toastr/toastr.js"></script>
     <script src="bower_components/moment/moment.js"></script>
-    <script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <!-- endbower -->
     
     <!-- inject:js -->
@@ -70,12 +73,14 @@
       <script src="/app/job/job.service.js"></script>
       <script src="/app/main/main.controller.js"></script>
       <script src="/app/main/main.js"></script>
-      <script src="/app/sidemenu/sidemenu.controller.js"></script>
+      <script src="/app/toolbar/toolbar.controller.js"></script>
+      <script src="/app/toolbar/toolbar.js"></script>
+      <script src="/app/account/login/login.controller.js"></script>
       <script src="/app/account/auth/auth.service.js"></script>
       <script src="/app/account/auth/user.service.js"></script>
-      <script src="/app/account/login/login.controller.js"></script>
-      <script src="/app/account/signup/signup.controller.js"></script>
+      <script src="/app/account/logout/logout.controller.js"></script>
       <script src="/app/account/settings/settings.controller.js"></script>
+      <script src="/app/account/signup/signup.controller.js"></script>
       <script src="/app/blocks/logger/logger.js"></script>
       <script src="/app/components/mongoose-error/mongoose-error.directive.js"></script>
       <!-- endinject -->

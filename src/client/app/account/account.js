@@ -9,6 +9,11 @@
           controller: 'LoginCtrl',
           controllerAs: 'vm'
         })
+        .when('/logout', {
+          templateUrl: 'app/account/logout/logout.html',
+          controller: 'LogoutController',
+          controllerAs: 'vm'
+        })
         .when('/signup', {
           templateUrl: 'app/account/signup/signup.html',
           controller: 'SignupCtrl',
