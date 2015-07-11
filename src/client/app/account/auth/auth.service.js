@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('jokumuuApp')
-  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q, logger) {
+  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookies, $q, logger) {
     var currentUser = {};
-    if ($cookieStore.get('token')) {
+    if ($cookies.get('token')) {
       currentUser = User.get();
     }
 
@@ -37,7 +37,7 @@ angular.module('jokumuuApp')
         password: user.password
       })
       .success(function(data) {
-        $cookieStore.put('token', data.token);
+        $cookies.put('token', data.token);
         currentUser = User.get();
         deferred.resolve(data);
         return cb();
@@ -57,7 +57,7 @@ angular.module('jokumuuApp')
      * @param  {Function}
      */
     function logout() {
-      $cookieStore.remove('token');
+      $cookies.remove('token');
       currentUser = {};
     }
 
@@ -73,7 +73,7 @@ angular.module('jokumuuApp')
 
       return User.save(user,
         function(data) {
-          $cookieStore.put('token', data.token);
+          $cookies.put('token', data.token);
           currentUser = User.get();
           return cb(user);
         },
@@ -153,6 +153,6 @@ angular.module('jokumuuApp')
      * Get auth token
      */
     function getToken() {
-      return $cookieStore.get('token');
+      return $cookies.get('token');
     }
 });

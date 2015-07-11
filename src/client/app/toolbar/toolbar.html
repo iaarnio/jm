@@ -6,16 +6,16 @@
     <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
       <md-icon aria-label="Menu" md-svg-icon="../assets/images/menu.svg"></md-icon>
     </md-button>
-    <h2>JokuMuu</h2>
+    <a class="appName" ng-href="/">JokuMuu</a>
     <span flex></span>
-    <span ng-show="!!toolbar.currentUser.name">   
-      <span>{{toolbar.currentUser.name}}&nbsp;</span>
+    <span ng-show="!!toolbar.currentUser.name" class="toolbarButtons" layout="row">   
+      <span class="toolbarUsername">{{toolbar.currentUser.name}}</span>
       <ng-md-icon class="toolbar-icon" icon="account_box"></ng-md-icon>
       <ng-md-icon class="toolbar-icon" icon="inbox"></ng-md-icon>
       <ng-md-icon class="toolbar-icon" icon="dashboard"></ng-md-icon>
       <md-button class="md-raised" href="/logout" aria-label="logout">Logout</md-button>
     </span>
-    <span ng-hide="!!toolbar.currentUser.name">   
+    <span ng-hide="!!toolbar.currentUser.name"class="toolbarButtons" layout="row">   
       <md-button class="md-raised" href="/signup" aria-label="sign up">Sign Up</md-button>
       <md-button class="md-raised" href="/login" aria-label="login">Login</md-button>
     </span>
