@@ -4,8 +4,8 @@
   /**
    * Module dependencies.
    */
-  var mongoose = require('mongoose'),
-  	Schema = mongoose.Schema;
+  var mongoose = require('mongoose');
+  var Schema = mongoose.Schema;
 
   /**
    * Job Schema
@@ -42,6 +42,13 @@
 //  		trim: true
 //  	},
 //  	requirements: [Schema.Types.ObjectId]
+/*
+    this.category = options.category;
+    this.photoUrls = options.photoUrls;
+    this.tags = options.tags;
+    this.state = options.state;
+    this.location = options.location;
+    */
   });
 
   module.exports = mongoose.model('Job', JobSchema);

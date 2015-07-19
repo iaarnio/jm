@@ -4,8 +4,8 @@
   /**
    * Module dependencies.
    */
-  var mongoose = require('mongoose'),
-  	Schema = mongoose.Schema;
+  var mongoose = require('mongoose');
+  var	Schema = mongoose.Schema;
 
   /**
    * Applicant Schema
@@ -18,6 +18,9 @@
     jobid: {
       type: String,
       required: true
+    },
+    description: {
+      type: String
     },
     state: String
 //  	created: {
