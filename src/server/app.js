@@ -1,12 +1,9 @@
-/// <reference path="../../typings/node/node.d.ts"/>
-/**
- * Main application file
- */
-
 'use strict';
 
-// Set default node environment to development
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+var colors = require('colors');
+
+loadEnvVars();
+checkEnvVars(['NODE_ENV', 'PORT', 'DB_USER', 'DB_PASSWORD', 'DB_HOST', 'DB_PORT', 'DB_NAME', 'DB_SEED']);
 
 var express = require('express');
 var mongoose = require('mongoose');
@@ -14,11 +11,10 @@ var config = require('./config/environment');
 var http = require('http');
 var errors = require('./components/errors');
 
-// Connect to database
-mongoose.connect(config.mongo.uri, config.mongo.options);
+mongoose.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASSWORD + '@' + process.env.DB_HOST + ':' + process.env.DB_PORT + '/' + process.env.DB_NAME);
 
 // Populate DB with sample data
-if (config.seedDB) { require('./config/seed'); }
+if (process.env.DB_SEED) { require('./config/seed'); }
 
 // Setup server
 var app = express();
@@ -27,7 +23,7 @@ require('./config/express')(app);
 //require('./routes')(app);
 
 // Start server
-server.listen(config.port, config.ip);
+server.listen(process.env.PORT, process.env.HOST);
 server.on('error', onError);
 server.on('listening', onListening);
 
@@ -74,6 +70,20 @@ function onError(error) {
     default:
       throw error;
   }
+}
+
+function loadEnvVars() {
+  var dotenvLoaded = require('dotenv').load();
+  if (!dotenvLoaded) {
+    console.log('Warning: missing .env file'.warn);
+  }
+}
+
+// Check that mandatory environment variables are set
+function checkEnvVars(envVars) {
+  var EnvBang = require('envbang-node');
+  var envbang = new EnvBang(envVars);
+  envbang.check();
 }
 
 // Expose app

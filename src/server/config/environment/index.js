@@ -18,9 +18,6 @@ var all = {
   // Root path of server
   root: path.normalize(__dirname + '/../../..'),
 
-  // Should we populate the DB with sample data?
-  seedDB: false,
-
   // Secret for session, you will want to change this and make it an environment variable
   secrets: {
     session: process.env.SESSION_SECRET || 'jdsfUUWQE67621312lkjJUmhgda'
@@ -28,15 +25,6 @@ var all = {
 
   // List of user roles
   userRoles: ['guest', 'user', 'admin'],
-
-  // MongoDB connection options
-  mongo: {
-    options: {
-      db: {
-        safe: true
-      }
-    }
-  },
 
   facebook: {
     clientID:     process.env.FACEBOOK_ID || 'id',
@@ -59,6 +47,4 @@ var all = {
 
 // Export the config object based on the NODE_ENV
 // ==============================================
-module.exports = _.merge(
-  all,
-  require('./' + process.env.NODE_ENV + '.js') || {});
+module.exports = all;
