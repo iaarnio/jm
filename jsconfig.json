@@ -1,6 +1,6 @@
 {
     "files": [
         "typings/jquery/jquery.d.ts",
-        "typings/angularjs/angular.d.ts",
+        "typings/angularjs/angular.d.ts"
     ]
 }
