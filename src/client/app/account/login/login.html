@@ -13,22 +13,22 @@
         <label>Email</label>
         <input type="email" name="email" ng-model="vm.user.email" required minlength="4">
         <!--
-        <div ng-messages="loginForm.email.$error" ng-show="loginForm.email.$dirty">
+        <div ng-messages="loginForm.email.$error">
           <div ng-message="required">Email address is required!</div>
           <div ng-message="minlength">Email is too short!</div>
-        </div>            
-        -->
+        </div>
+        -->            
       </md-input-container>
 
       <md-input-container>
         <label>Password</label>
         <input type="password" name="password" ng-model="vm.user.password" required minlength="4">
         <!--
-        <div ng-messages="loginForm.password.$error" ng-show="loginForm.password.$dirty">
+        <div ng-messages="loginForm.password.$error">
           <div ng-message="required">Password is required!</div>
           <div ng-message="minlength">Password is too short!</div>
         </div>
-        -->            
+        -->
       </md-input-container>
 
       <div layout="row">
