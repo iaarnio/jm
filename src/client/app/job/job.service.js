@@ -17,23 +17,15 @@
     };
 
     function listJobs() {
-      return $http.get('/api/jobs')
-        .then(getJobsComplete)
-        .catch(getJobsFail);
-      
-      function getJobsComplete(response) {
-        return response.data;
-      }
-
-      function getJobsFail(message) {
-        var errorMsg = 'XHR failed for getJobs: ' + message;
-        logger.error(errorMsg);
-        $q.reject(errorMsg);
-      }
+      return $http.get('/api/jobsds')
+        .then(serviceComplete)
+        .catch(serviceFail);
     }
 
     function viewJob(job) {
-
+      return $http.get('/api/jobs/job.id')
+        .then(serviceComplete)
+        .catch(serviceFail);
     }
 
     function addJob(job) {
@@ -47,6 +39,19 @@
     function applyJob(job) {
 
     }
+    
+    
+    function serviceComplete(response) {
+      return response.data;
+    }
+
+    function serviceFail(message) {
+      var errorMsg = 'JobService failed on XHR: ' + message.status + ' ' message.statusText;
+      logger.error(errorMsg);
+      console.log(message);
+      $q.reject(errorMsg);
+    }
+    
   }
 
 })();
