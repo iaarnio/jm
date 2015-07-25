@@ -23,7 +23,7 @@
     }
 
     function viewJob(job) {
-      return $http.get('/api/jobs/job.id')
+      return $http.get('/api/jobs/' + job._id)
         .then(serviceComplete)
         .catch(serviceFail);
     }
