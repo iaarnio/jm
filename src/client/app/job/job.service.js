@@ -17,7 +17,7 @@
     };
 
     function listJobs() {
-      return $http.get('/api/jobsds')
+      return $http.get('/api/jobs')
         .then(serviceComplete)
         .catch(serviceFail);
     }
