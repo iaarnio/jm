@@ -6,7 +6,6 @@ src/client/bower_components
 build/
 dist/
 server/config/local.env.js
-*.css
 db/
 log/
 .settings/

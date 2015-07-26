@@ -1,0 +1,44 @@
+html,
+body {
+  height: 100%;
+  margin: 0
+}
+
+.app-bg {
+  background-color: #3F51B5;
+}
+
+.footer {
+  background-color: #DFDFDF;
+}
+
+.appName {
+  font-size: 18px;
+  white-space: nowrap;
+  padding-left: 5px;  
+}
+.toolbar-icon {
+  fill: white;
+} 
+
+.toolbarButtons {
+  margin-right: 8px;
+}
+
+.toolbarUsername {
+  font-size: 14px;
+  white-space: nowrap;
+  padding-right: 5px;
+}
+
+.jm-sidebutton {
+  width: 95%;
+}
+
+.odd {
+  background-color: cornflowerblue;
+}
+
+.even {
+  background-color: cadetblue;
+}
