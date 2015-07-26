@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose');
 var passport = require('passport');
-var config = require('../config/environment');
+var config = require('../config/config');
 var compose = require('composable-middleware');
 var User = require('../api/user/user.model');
 var jwt = require('jsonwebtoken');

@@ -3,11 +3,11 @@
 var colors = require('colors');
 
 loadEnvVars();
-checkEnvVars(['NODE_ENV', 'PORT', 'DB_USER', 'DB_PASSWORD', 'DB_HOST', 'DB_PORT', 'DB_NAME', 'DB_SEED']);
+checkEnvVars(['NODE_ENV', 'HOST', 'PORT', 'DB_USER', 'DB_PASSWORD', 'DB_HOST', 'DB_PORT', 'DB_NAME', 'DB_SEED']);
 
 var express = require('express');
 var mongoose = require('mongoose');
-var config = require('./config/environment');
+var config = require('./config/config');
 var http = require('http');
 var errors = require('./components/errors');
 
@@ -27,6 +27,7 @@ server.listen(process.env.PORT, process.env.HOST);
 server.on('error', onError);
 server.on('listening', onListening);
 
+
 // API routes
 app.use('/api/jobs', require('./api/job'));
 app.use('/api/users', require('./api/user'));
@@ -44,9 +45,7 @@ app.use('/*', express.static('./src/client'));
 
 // Event listener for HTTP server "listening" event.
 function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
-  console.log('Listening on ' + bind);
+  console.log('Listening on ' + getBind());
 }
 
 // Event listener for HTTP server "error" event.
@@ -55,7 +54,7 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof config.port === 'string' ? 'Pipe ' + config.port : 'Port ' + config.port;
+  var bind = getBind();
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -70,6 +69,12 @@ function onError(error) {
     default:
       throw error;
   }
+}
+
+function getBind() {
+  var addr = server.address();
+  var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+  return bind;  
 }
 
 function loadEnvVars() {
