@@ -3,18 +3,19 @@
 
 process.env.NODE_ENV = 'test';
 
+var mockery = require('mockery');
 var should = require('should');
-var Job = require('./job.model');
+var app = require('../../app');
 
 var title1 = 'Test title';
 var employer1 = 'Test title'; 
 
-describe('Job model', function() {
+describe('Job controller', function() {
 
   // Clear before testing begins
-  before(function(done) {
-    Job.remove().exec().then(function() {
-      done();
+  beforeEach(inject(function(controller) {
+    jobController = $controller('JobController') {
+      
     });
   });
 
