@@ -13,14 +13,15 @@
   };
 
   function list(req, res) {
-    Job.find(function (err, job) {
-      if (err) {
-        return handleError(res, err);
-      }
-      return res.json(200, job);
+    console.log('list called');
+    Job.find()
+    .then(function(jobs) {
+      return res.json(200, jobs);
+    }, function(err) {
+      return handleError(res, err);
     });
   }
-
+  
   function get(req, res) {
     Job.findById(req.params.id, function (err, job) {
       if (err) {
@@ -43,6 +44,26 @@
   }
 
   function update(req, res) {
+    Job
+    .findById(req.params.id)
+    .then(function(job) {
+      if (!job) {
+        return res.send(404);
+      }
+      var updated = _.merge(job, req.body);
+      updated
+      .save()
+      .then(function() {
+        return res.json(200, job);
+      }, function (err) {
+        return handleError(res, err);
+      });
+    });
+  }
+
+/*
+old version - remove after verified that new update works
+  function update2(req, res) {
     if (req.body._id) {
       delete req.body._id;
     }
@@ -62,6 +83,7 @@
       });
     });
   }
+*/
 
   function remove(req, res) {
     Job.findById(req.params.id, function (err, job) {
