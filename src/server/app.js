@@ -73,7 +73,12 @@ function onError(error) {
 
 function getBind() {
   var addr = server.address();
-  var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+  var bind;
+  if (addr) {
+    bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+  } else {
+    bind = 'port ' + process.env.PORT;
+  }
   return bind;  
 }
 
