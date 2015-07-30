@@ -11,7 +11,6 @@
     "connect-mongo": "^0.4.1",
     "cookie-parser": "~1.0.1",
     "dotenv": "^1.2.0",
-    "ejs": "~0.8.4",
     "envbang-node": "0.0.1",
     "errorhandler": "~1.0.0",
     "express": "~4.0.0",
@@ -31,6 +30,7 @@
   },
   "devDependencies": {
     "browser-sync": "^2.6.9",
+    "chai": "^3.2.0",
     "del": "^1.1.1",
     "gulp": "^3.9.0",
     "gulp-angular-templatecache": "^1.6.0",
@@ -72,11 +72,11 @@
     "karma-phantomjs-launcher": "~0.1.4",
     "karma-requirejs": "~0.2.1",
     "karma-script-launcher": "~0.1.0",
-    "mockery": "^1.4.0",
+    "mockgoose": "^2.0.3",
     "open": "~0.0.4",
     "requirejs": "~2.1.11",
     "should": "~3.3.1",
-    "supertest": "~0.11.0",
+    "sinon": "^1.15.4",
     "time-grunt": "~0.3.1",
     "wiredep": "^2.2.2",
     "yargs": "^3.8.0"
@@ -86,8 +86,7 @@
   },
   "scripts": {
     "start": "node server/app.js",
-    "test": "gulp test",
-    "update-webdriver": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update"
+    "test": "gulp test"
   },
   "private": true
 }
