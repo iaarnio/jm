@@ -13,33 +13,32 @@
   };
 
   function list(req, res) {
-    console.log('list called');
     Job.find()
     .then(function(jobs) {
-      return res.json(200, jobs);
+      returnResponse(res, 200, jobs);
     }, function(err) {
-      return handleError(res, err);
+      returnError(res, err);
     });
   }
   
   function get(req, res) {
-    Job.findById(req.params.id, function (err, job) {
-      if (err) {
-        return handleError(res, err);
-      }
+    Job.findById(req.params.id)
+    .then(function(job) {
       if (!job) {
-        return res.send(404);
+        returnResponse(res, 404);
       }
-      return res.json(job);
+      returnResponse(res, 200, job);
+    }, function (err, job) {
+      returnError(res, err);
     });
   }
 
   function create(req, res) {
-    Job.create(req.body, function (err, job) {
-      if (err) {
-        return handleError(res, err);
-      }
-      return res.json(201, job);
+    Job.create(req.body)
+    .then(function(job) {
+      returnResponse(res, 201, job);
+    }, function (err, job) {
+      returnError(res, err);
     });
   }
 
@@ -48,15 +47,15 @@
     .findById(req.params.id)
     .then(function(job) {
       if (!job) {
-        return res.send(404);
+        returnResponse(res, 404);
       }
       var updated = _.merge(job, req.body);
       updated
       .save()
       .then(function() {
-        return res.json(200, job);
+        returnResponse(res, 200, job);
       }, function (err) {
-        return handleError(res, err);
+        returnError(res, err);
       });
     });
   }
@@ -86,23 +85,31 @@ old version - remove after verified that new update works
 */
 
   function remove(req, res) {
-    Job.findById(req.params.id, function (err, job) {
-      if (err) {
-        return handleError(res, err);
-      }
+    Job.findById(req.params.id)
+    .then(function(job) {
       if (!job) {
-        return res.send(404);
+        returnResponse(res, 404);
       }
-      job.remove(function (err) {
-        if (err) {
-          return handleError(res, err);
-        }
-        return res.send(204);
+      job.remove()
+      .then(function() {
+        returnResponse(res, 204);
+      }, function (err) {
+        returnError(res, err);
       });
+    }, function (err, job) {
+      returnError(res, err);
     });
   }
+  
+  function returnResponse(res, code, data) {
+    if (data) {
+      res.json(code, data);
+    } else {
+      res.send(code);
+    }
+  }
 
-  function handleError(res, err) {
+  function returnError(res, err) {
     return res.send(500, err);
   }
 
