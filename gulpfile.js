@@ -52,7 +52,6 @@ function lint() {
   log('Analyzing source with JSHint and JSCS');
   return gulp
     .src(config.alljs)
-    .pipe($.debug())
     .pipe($.if(args.verbose, $.print()))
 //    .pipe($.jscs())
     .pipe($.jshint())
@@ -87,7 +86,8 @@ function testnode(done) {
   return gulp
     .src(config.server + '**/*.spec.js', {read: false})
     .pipe($.mocha())
-    .once('error', function () {
+    .once('error', function (err) {
+      console.log(err)
       process.exit(1);
     })
     .once('end', function () {
@@ -115,7 +115,7 @@ function runCommand(command) {
     console.log(stdout);
     console.log(stderr);
     if (err) {
-      console.log(err);
+      logError(err);
     }
   });
 }
@@ -177,26 +177,10 @@ function startTests(singleRun, done) {
   }
 }
 
-// A display error function, to format and make custom errors more uniform
-// Could be combined with gulp-util or npm colors for nicer output
-//function displayError(error) {
-//
-//  // Initial building up of the error
-//  var errorString = '[' + error.plugin + ']';
-//  errorString += ' ' + error.message.replace("\n", ''); // Removes new line at the end
-//
-//  // If the error contains the filename or line number add it to the string
-//  if (error.fileName)
-//    errorString += ' in ' + error.fileName;
-//
-//  if (error.lineNumber)
-//    errorString += ' on line ' + error.lineNumber;
-//
-//  // This will output an error like the following:
-//  // [gulp-sass] error message in file_name on line 1
-//  console.error(errorString);
-//};
-
 function log(msg) {
   $.util.log($.util.colors.blue(msg));
+}
+
+function logError(msg) {
+  $.util.log($.util.colors.red(msg));
 }
