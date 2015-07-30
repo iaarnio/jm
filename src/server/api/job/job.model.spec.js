@@ -24,20 +24,17 @@ function populateCollection(done) {
 }
 
 function cleanCollection(done) {
-  Job.remove().exec().then(function() {
+  Job.remove().exec()
+  .then(function() {
     done();
   });      
 }
 
  describe('Job model', function() {
 
-  // Clear before testing begins
   before(function(done) {
-    Job.remove().exec().then(function() {
-      done();
-    });
+    cleanCollection(done)
   });
-
 
   describe('empty collection', function() {
 
@@ -125,12 +122,4 @@ function cleanCollection(done) {
   
   });
   
-  //it('should fail when saving without an email', function(done) {
-  //  job.email = '';
-  //  job.save(function(err) {
-  //    should.exist(err);
-  //    done();
-  //  });
-  //});
-
 });
