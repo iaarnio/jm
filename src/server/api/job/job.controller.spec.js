@@ -34,6 +34,62 @@ describe('Job controller', function() {
       Job.find.restore();
       done();
     });
+
   });
   
+  describe('get', function() {
+    
+    it('should call Job.findById', function(done) {
+      sinon.stub(Job, 'findById', function() { 
+        return Promise.resolve(); 
+      });
+      jobController.get({params: {id: 123}});
+      sinon.assert.calledOnce(Job.findById);
+      Job.findById.restore();
+      done();
+    });
+
+  });
+
+  describe('create', function() {
+    
+    it('should call Job.create', function(done) {
+      sinon.stub(Job, 'create', function() { 
+        return Promise.resolve(); 
+      });
+      jobController.create({body: {}});
+      sinon.assert.calledOnce(Job.create);
+      Job.create.restore();
+      done();
+    });
+
+  });
+
+  describe('update', function() {
+    
+    it('should call Job.findById', function(done) {
+      sinon.stub(Job, 'findById', function() { 
+        return Promise.resolve({foo: 1}); 
+      });
+      jobController.update({params: {id: 123}});
+      sinon.assert.calledOnce(Job.findById);
+      Job.findById.restore();
+      done();
+    });
+
+  });
+
+  describe('remove', function() {
+    
+    it('should call Job.findById', function(done) {
+      sinon.stub(Job, 'findById', function() { 
+        return Promise.resolve({foo: 1}); 
+      });
+      jobController.remove({params: {id: 123}});
+      sinon.assert.calledOnce(Job.findById);
+      Job.findById.restore();
+      done();
+    });
+
+  });
 });
