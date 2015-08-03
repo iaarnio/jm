@@ -4,9 +4,9 @@
   angular.module('jokumuuApp')
     .config(function ($routeProvider) {
       $routeProvider
-        .when('/job', {
-          templateUrl: 'app/job/job.html',
-          controller: 'JobController',
+        .when('/jobDetails/:id', {
+          templateUrl: 'app/job/details/job.details.html',
+          controller: 'JobDetailsController',
           controllerAs: 'vm'
         });
     });

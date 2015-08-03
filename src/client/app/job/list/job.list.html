@@ -1,24 +1,18 @@
-<section>
-  <md-tabs class="md-primary">
-    <md-tab label="Browse jobs"></md-tab>
-    <md-tab label="My jobs"></md-tab>
-  </md-tabs>
-</section>
-
 <section class="whiteframe-z2">
   <div flex layout="column">
-    
-    <span flex>{{currentUser.name}}</span>
     <md-content>
       <md-list>
         <md-list-item class="md-2-line" ng-repeat="job in vm.jobs">
-          <md-checkbox ng-model="job.bookmark"></md-checkbox>
           <div class="md-list-item-text">
-            <h3>{{job.title}}</h3>
-            <p>{{job.employer}}</p>
+            <a ng-href="/jobDetails/{{job._id}}">
+              <h3>{{job.title}}</h3>
+              <p>{{job.employer}}</p>
+            </a>
           </div>
         </md-list-item>
       </md-list>
+      
+      <md-button class="md-raised" ng-href="/jobCreate">Create job</md-button>
     </md-content>    
 
 <!--    

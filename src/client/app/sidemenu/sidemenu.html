@@ -8,12 +8,13 @@
       </div>
       <!-- fill up the space between left and right area -->
      <span flex></span>
-      <md-button flex class="md-raised jm-sidebutton" href="/job"><!-- ng-class="{'selected' : 0 === foo.selected }">-->
+      <md-button flex class="md-raised jm-sidebutton" href="/jobList"><!-- ng-class="{'selected' : 0 === foo.selected }">-->
         Seek job
       </md-button>
-      <md-button class="md-raised jm-sidebutton" href="/offer">
-        Offer job
+      <md-button class="md-raised jm-sidebutton" href="/jobCreate">
+        Create job
       </md-button>
+      <!-- nearby jobs -->
     </div>
     <span ng-show="vm.currentUser">{{vm.currentUser.name}}</span>
   </md-toolbar>

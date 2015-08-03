@@ -22,14 +22,15 @@
         .catch(serviceFail);
     }
 
-    function viewJob(job) {
-      return $http.get('/api/jobs/' + job._id)
+    function viewJob(jobId) {
+      return $http.get('/api/jobs/' + jobId)
         .then(serviceComplete)
         .catch(serviceFail);
     }
 
     function addJob(job) {
-
+      //todo: save  to db
+      return Promise.resolve();
     }
 
     function deleteJob(job) {

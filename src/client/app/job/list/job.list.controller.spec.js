@@ -1,8 +1,7 @@
-/// <reference path="../../../../typings/jasmine/jasmine.d.ts"/>
 /* jshint -W117, -W030 */
 'use strict';
 
-describe('JobController', function() {
+describe('JobListController', function() {
   beforeEach(module('jokumuuApp'));
 
   // Mock logger
@@ -18,7 +17,7 @@ describe('JobController', function() {
 
   beforeEach(inject(function($controller, $rootScope){
     scope = $rootScope.$new();
-    controller = $controller('JobController', { vm: scope });
+    controller = $controller('JobListController', { vm: scope });
   }));
 
   
