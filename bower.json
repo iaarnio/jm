@@ -13,7 +13,7 @@
     "material-design-icons": "~1.0.0",
     "angular-material-icons": "~0.5.0",
     "jquery": "~1.11.0",
-    "toastr": "~2.1.1",
+    "toastr": "~2.1.2",
     "moment": "~2.10.2",
     "font-awesome": ">=4.1.0",
     "lodash": "~2.4.1"
