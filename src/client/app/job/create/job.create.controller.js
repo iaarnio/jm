@@ -18,14 +18,13 @@
       logger.info('JobCreateController activated');
     }
 
-    function createJob(job) {
+    function createJob() {
       logger.info('JobCreateController createJob');
-      job.employer = Auth.getCurrentUser()._id;
-      console.log('adding employer id: ' + job.employer);
-      jobService.addJob(job)
-      .then(function(job) {
+      vm.job.employer = Auth.getCurrentUser()._id;
+      jobService.addJob(vm.job)
+      .then(function() {
         logger.info('Job created successfully');
-        $scope.$apply($location.path('/jobList'));
+        $location.path('/jobList');
         logger.info($location.path());
       })
     }

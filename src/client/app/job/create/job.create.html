@@ -1,12 +1,11 @@
 <section class="whiteframe-z2">
   <div flex layout="column">
       
-    <form class="form" name="jobForm" ng-submit="vm.createJob(jobForm)" novalidate>
+    <form class="form" name="jobForm" ng-submit="vm.createJob()" novalidate>
 
       <md-input-container>
         <label>Job title</label>
-        <input type="text" name="title" class="form-control" ng-model="vm.job.title"
-               required/>
+        <input type="text" name="title" ng-model="vm.job.title" required/>
        <!--
         <p class="help-block" ng-show="form.name.$error.required && vm.submitted">
           A name is required

@@ -29,8 +29,9 @@
     }
 
     function addJob(job) {
-      //todo: save  to db
-      return Promise.resolve();
+      return $http.post('/api/jobs', job)
+        .then(serviceComplete)
+        .catch(serviceFail);
     }
 
     function deleteJob(job) {
@@ -51,6 +52,7 @@
       logger.error(errorMsg);
       console.log(message);
       $q.reject(errorMsg);
+      return $q.promise;
     }
     
   }
