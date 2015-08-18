@@ -28,23 +28,23 @@ User.find({}).remove(function() {
 
 Job.find({}).remove(function() {
   Job.create({
-    title : 'Warehouse work',
-    employer : 'Mr Employer'
+    title : 'Räystäiden puhdistus',
+    employer : 'Olli Omakotilainen'
   }, {
-    title : 'Cashier',
-    employer : 'Mrs Corporation'
+    title : 'Ikea-hyllyn kokoaminen',
+    employer : 'Anna Avuntarpeinen'
+  },  {
+    title : 'Inventaarion laskenta',
+    employer : 'Sekavarakauppa Oy'
   }, {
-    title : 'Car driver',
-    employer : 'Father and Son co'
+    title : 'Muuttoapu',
+    employer : 'Mikko Muuttaja'
   },  {
-    title : 'Store assistant',
-    employer : 'Click and Go Inc'
-  },  {
-    title : 'Cleaner',
-    employer : 'Putsis'
+    title : 'Auton käyttö katsastuksessa',
+    employer : 'Kirsi Kiireinen'
   },{
-    title : 'Painter',
-    employer : 'Painter Boys'
+    title : 'Tavaran vastaanotto ja kuittaus',
+    employer : 'Tavara Ky'
   }, function() {
       console.log('finished populating jobs');
   });
