@@ -15,7 +15,7 @@
 
     vm.login = login;
     vm.loginOauth = loginOauth;
-    vm.fillTestUser = fillTestUser;
+    vm.fillKirsiUser = fillKirsiUser;
     vm.fillAdminUser = fillAdminUser;
     vm.fillDummyUser = fillDummyUser;
 
@@ -50,8 +50,8 @@
     
     
     // Temporary easy access / easy testing form fillers
-    function fillTestUser() {
-      vm.user.email = 'test@test.com';
+    function fillKirsiUser() {
+      vm.user.email = 'kirsi@test.com';
       vm.user.password = 'test'
     }
     function fillAdminUser() {
