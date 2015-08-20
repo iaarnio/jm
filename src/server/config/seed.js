@@ -13,8 +13,8 @@ seed();
 
 function seed() {
   console.log('seed');
-  let personIds = [];
-  let companyIds = [];
+  let persons = [];
+  let companies = [];
   
   User
   .find({}).remove()
@@ -23,20 +23,24 @@ function seed() {
   })
   .then(function(users) {
     console.log('finished populating person users');
-    personIds = users.map(u => u._id);
+    persons = users.map(u => {
+      return { id: u._id, name: u.name }
+    });
     return Promise.all(initCompanyUsers());
   }, function(err) {
     console.log('Cannot initialize users: ' + err);
   })
   .then(function(users) {
     console.log('finished populating company users');
-    companyIds = users.map(u => u._id);
+    companies = users.map(u => {
+      return { id: u._id, name: u.name }
+    });
     return Job.find({}).remove();
   }, function(err) {
     console.log('Cannot initialize companies: ' + err);
   })
   .then(function() {
-    return Promise.all(initJobs(personIds, companyIds));
+    return Promise.all(initJobs(persons, companies));
   })
   .then(function(jobs) {
     console.log('finished populating jobs');
@@ -114,33 +118,38 @@ function initCompanyUsers() {
 }
 
 function initJobs(persons, companies) {
-  var jobs = [];
-  
-  jobs.push(Job.create({
-    title : 'Räystäiden puhdistus',
-    employer : _.sample(persons)
-  }));
-  jobs.push(Job.create({
-    title : 'Ikea-hyllyn kokoaminen',
-    employer : _.sample(persons)
-  }));
-  jobs.push(Job.create({
-    title : 'Inventaarion laskenta',
-    employer : _.sample(companies)
-  }));
-  jobs.push(Job.create({
-    title : 'Muuttoapu',
-    employer : _.sample(persons)
-  }));
-  jobs.push(Job.create({
-    title : 'Auton käyttö katsastuksessa',
-    employer : _.sample(persons)
-  }));
-  jobs.push(Job.create({
-    title : 'Tavaran vastaanotto ja kuittaus',
-    employer : _.sample(companies)
-  }));
-  
+  let jobs = [];
+
+  const userJobs = [ 
+    'Räystäiden puhdistus',
+    'Ikea-hyllyn kokoaminen',
+    'Muuttoapu',
+    'Auton käyttö katsastuksessa',
+  ];
+  const companyJobs = [ 
+    'Inventaarion laskenta',
+    'Tavaran vastaanotto ja kuittaus'
+  ];
+
+  userJobs.map(jobTitle => {
+    let employer = _.sample(persons);
+  console.log(employer);
+    jobs.push(Job.create({
+      title : jobTitle,
+      employer : employer.id, 
+      employerName : employer.name, 
+    }));
+  });
+
+  companyJobs.map(jobTitle => {
+    let employer = _.sample(companies);
+    jobs.push(Job.create({
+      title : jobTitle,
+      employer : employer.id, 
+      employerName : employer.name, 
+    }));
+  });
+
   return jobs;
   
 };

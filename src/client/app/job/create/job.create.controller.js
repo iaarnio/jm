@@ -21,6 +21,7 @@
     function createJob() {
       logger.info('JobCreateController createJob');
       vm.job.employer = Auth.getCurrentUser()._id;
+      vm.job.employerName = Auth.getCurrentUser().name;
       jobService.addJob(vm.job)
       .then(function() {
         logger.info('Job created successfully');

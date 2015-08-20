@@ -20,6 +20,10 @@
   		ref: 'User',
   		required: 'Employer is mandatory'
   	},
+    employerName: {
+      type: String,
+      required: 'Employer is mandatory'
+    },
   	title: {
   		type: String,
   		default: '',
