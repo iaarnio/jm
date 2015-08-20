@@ -133,7 +133,6 @@ function initJobs(persons, companies) {
 
   userJobs.map(jobTitle => {
     let employer = _.sample(persons);
-  console.log(employer);
     jobs.push(Job.create({
       title : jobTitle,
       employer : employer.id, 
