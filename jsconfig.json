@@ -1,5 +1,9 @@
 {
+    "compilerOptions": {
+        "target": "ES6"
+    },
     "files": [
-        "typings/tds.d.ts"
+        "src/server/api/job/job.controller.js",
+        "src/server/config/seed.js"
     ]
 }
