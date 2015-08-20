@@ -5,28 +5,61 @@
 
 'use strict';
 
-var _ = require('lodash');
-var User = require('../api/user/user.model');
-var Job = require('../api/job/job.model');
+let _ = require('lodash');
+let User = require('../api/user/user.model');
+let Job = require('../api/job/job.model');
 
-var personIds = [];
-var companyIds = [];
+seed();
 
-var admin = User.create({
-  provider: 'local',
-  role: 'admin',
-  name: 'Admin',
-  email: 'admin@admin.com',
-  password: 'admin'
-});
-admin.then(undefined, function(err) {
-  console.log('Cannot create admin user');
-}) 
+function seed() {
+  console.log('seed');
+  let personIds = [];
+  let companyIds = [];
+  
+  User
+  .find({}).remove()
+  .then(function() {
+    return Promise.all(initPersonUsers());
+  })
+  .then(function(users) {
+    console.log('finished populating person users');
+    personIds = users.map(u => u._id);
+    return Promise.all(initCompanyUsers());
+  }, function(err) {
+    console.log('Cannot initialize users: ' + err);
+  })
+  .then(function(users) {
+    console.log('finished populating company users');
+    companyIds = users.map(u => u._id);
+    return Job.find({}).remove();
+  }, function(err) {
+    console.log('Cannot initialize companies: ' + err);
+  })
+  .then(function() {
+    return Promise.all(initJobs(personIds, companyIds));
+  })
+  .then(function(jobs) {
+    console.log('finished populating jobs');
+  }, function(err) {
+    console.log('Cannot initialize jobs: ' + err);
+  });
+}
 
-User.find({}).remove(function() {
+
+function initPersonUsers() {
+  let admin = User.create({
+    provider: 'local',
+    role: 'admin',
+    name: 'Admin',
+    email: 'admin@admin.com',
+    password: 'admin'
+  });
+  admin.then(undefined, function(err) {
+    console.log('Cannot create admin user');
+  }) 
+  
   let persons = [];
-  let companies = [];
-
+  
   persons.push(User.create({
     provider: 'local',
     name: 'Kirsi Kiireinen',
@@ -51,14 +84,12 @@ User.find({}).remove(function() {
     email: 'antti@test.com',
     password: 'test'
   }));
-  Promise.all(persons)
-  .then(function(users) {
-    console.log('finished populating person users');
-    personIds = users.map(u => u._id);
-    console.log(personIds);
-  }, function(err) {
-    console.log('Cannot initialize DB users: ' + err);
-  });
+  
+  return persons;
+}
+
+function initCompanyUsers() {
+  let companies = [];
 
   companies.push(User.create({
     provider: 'local',
@@ -78,51 +109,38 @@ User.find({}).remove(function() {
     email: 'suutari@test.com',
     password: 'test'
   }));
-  Promise.all(companies)
-  .then(function(users) {
-    console.log('finished populating company users');
-    companyIds = users.map(u => u._id);
-    console.log(companyIds);
-  }, function(err) {
-    console.log('Cannot initialize DB users: ' + err);
-  });
-  
-});
 
-var jobs = [];
-Job.find({}).remove(function() {
+  return companies;
+}
+
+function initJobs(persons, companies) {
+  var jobs = [];
+  
   jobs.push(Job.create({
     title : 'Räystäiden puhdistus',
-    employer : _.sample(personIds)
+    employer : _.sample(persons)
   }));
   jobs.push(Job.create({
     title : 'Ikea-hyllyn kokoaminen',
-    employer : _.sample(personIds)
+    employer : _.sample(persons)
   }));
   jobs.push(Job.create({
     title : 'Inventaarion laskenta',
-    employer : _.sample(companyIds)
+    employer : _.sample(companies)
   }));
   jobs.push(Job.create({
     title : 'Muuttoapu',
-    employer : _.sample(personIds)
+    employer : _.sample(persons)
   }));
   jobs.push(Job.create({
     title : 'Auton käyttö katsastuksessa',
-    employer : _.sample(personIds)
+    employer : _.sample(persons)
   }));
   jobs.push(Job.create({
     title : 'Tavaran vastaanotto ja kuittaus',
-    employer : _.sample(companyIds)
+    employer : _.sample(companies)
   }));
-
-  Promise.all(jobs)
-  .then(function(createdJobs) {
-    console.log('finished populating jobs');
-  }, function(err) {
-    console.log('Cannot initialize DB jobs: ' + err);
-    console.log(JSON.stringify(err));   
-  });
-
-
-});
+  
+  return jobs;
+  
+};
