@@ -12,7 +12,6 @@ let Job = require('../api/job/job.model');
 seed();
 
 function seed() {
-  console.log('seed');
   let persons = [];
   let companies = [];
   
