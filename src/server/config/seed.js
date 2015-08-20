@@ -5,47 +5,124 @@
 
 'use strict';
 
+var _ = require('lodash');
 var User = require('../api/user/user.model');
 var Job = require('../api/job/job.model');
 
+var personIds = [];
+var companyIds = [];
+
+var admin = User.create({
+  provider: 'local',
+  role: 'admin',
+  name: 'Admin',
+  email: 'admin@admin.com',
+  password: 'admin'
+});
+admin.then(undefined, function(err) {
+  console.log('Cannot create admin user');
+}) 
+
 User.find({}).remove(function() {
-  User.create({
+  let persons = [];
+  let companies = [];
+
+  persons.push(User.create({
     provider: 'local',
-    name: 'Test User',
-    email: 'test@test.com',
+    name: 'Kirsi Kiireinen',
+    email: 'kirsi@test.com',
     password: 'test'
-  }, {
+  }));
+  persons.push(User.create({
     provider: 'local',
-    role: 'admin',
-    name: 'Admin',
-    email: 'admin@admin.com',
-    password: 'admin'
-  }, function() {
-      console.log('finished populating users');
-    }
-  );
+    name: 'Tytti Työteliäs',
+    email: 'tytti@test.com',
+    password: 'test'
+  }));
+  persons.push(User.create({
+    provider: 'local',
+    name: 'Harri Harrastaja',
+    email: 'harri@test.com',
+    password: 'test'
+  }));
+  persons.push(User.create({
+    provider: 'local',
+    name: 'Antti Ahkera',
+    email: 'antti@test.com',
+    password: 'test'
+  }));
+  Promise.all(persons)
+  .then(function(users) {
+    console.log('finished populating person users');
+    personIds = users.map(u => u._id);
+    console.log(personIds);
+  }, function(err) {
+    console.log('Cannot initialize DB users: ' + err);
+  });
+
+  companies.push(User.create({
+    provider: 'local',
+    name: 'Tavara Ky',
+    email: 'tavara@test.com',
+    password: 'test'
+  }));
+  companies.push(User.create({
+    provider: 'local',
+    name: 'Sekavarakauppa Oy',
+    email: 'sekatavarakauppa@test.com',
+    password: 'test'
+  }));
+  companies.push(User.create({
+    provider: 'local',
+    name: 'Suutari Tmi',
+    email: 'suutari@test.com',
+    password: 'test'
+  }));
+  Promise.all(companies)
+  .then(function(users) {
+    console.log('finished populating company users');
+    companyIds = users.map(u => u._id);
+    console.log(companyIds);
+  }, function(err) {
+    console.log('Cannot initialize DB users: ' + err);
+  });
+  
 });
 
+var jobs = [];
 Job.find({}).remove(function() {
-  Job.create({
+  jobs.push(Job.create({
     title : 'Räystäiden puhdistus',
-    employer : 'Olli Omakotilainen'
-  }, {
+    employer : _.sample(personIds)
+  }));
+  jobs.push(Job.create({
     title : 'Ikea-hyllyn kokoaminen',
-    employer : 'Anna Avuntarpeinen'
-  },  {
+    employer : _.sample(personIds)
+  }));
+  jobs.push(Job.create({
     title : 'Inventaarion laskenta',
-    employer : 'Sekavarakauppa Oy'
-  }, {
+    employer : _.sample(companyIds)
+  }));
+  jobs.push(Job.create({
     title : 'Muuttoapu',
-    employer : 'Mikko Muuttaja'
-  },  {
+    employer : _.sample(personIds)
+  }));
+  jobs.push(Job.create({
     title : 'Auton käyttö katsastuksessa',
-    employer : 'Kirsi Kiireinen'
-  },{
+    employer : _.sample(personIds)
+  }));
+  jobs.push(Job.create({
     title : 'Tavaran vastaanotto ja kuittaus',
-    employer : 'Tavara Ky'
-  }, function() {
-      console.log('finished populating jobs');
+    employer : _.sample(companyIds)
+  }));
+
+  Promise.all(jobs)
+  .then(function(createdJobs) {
+    console.log('finished populating jobs');
+  }, function(err) {
+    console.log('Cannot initialize DB jobs: ' + err);
+    console.log(JSON.stringify(err));   
   });
+
+
 });
