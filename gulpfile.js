@@ -25,17 +25,20 @@ function serveDev() {
   var nodeOptions = {
     script: config.nodeServer,
     delayTime: 1,
-    watch: [config.server]
+    watch: [config.server],
+    execMap: {
+      "js": "npm run babel-node"
+    }    
   };
 
   return $.nodemon(nodeOptions)
     .on('restart', function () {
-    log('nodemon restarting');
-    reloadBrowserSyncAfterDelay(config.startBrowsersyncDelay);
-  })
+      log('nodemon restarting');
+      reloadBrowserSyncAfterDelay(config.startBrowsersyncDelay);
+    })
     .on('start', function () {
-    log('nodemon starting');
-    startBrowserSync();
+      log('nodemon starting');
+      startBrowserSync();
   });
 }
 

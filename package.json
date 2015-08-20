@@ -86,7 +86,8 @@
   },
   "scripts": {
     "start": "node server/app.js",
-    "test": "gulp test"
+    "test": "gulp test",
+    "babel-node": "babel-node --stage 0"
   },
   "private": true
 }
