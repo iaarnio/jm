@@ -4,13 +4,18 @@
     <form class="form" name="jobForm" ng-submit="vm.createJob()" novalidate>
 
       <md-input-container>
-        <label>Job title</label>
+        <label>Otsikko</label>
         <input type="text" name="title" ng-model="vm.job.title" required/>
        <!--
         <p class="help-block" ng-show="form.name.$error.required && vm.submitted">
           A name is required
         </p>
         -->
+      </md-input-container>
+
+      <md-input-container>
+        <label>Osoite</label>
+        <input type="text" name="title" ng-model="vm.job.address" required/>
       </md-input-container>
 
       <div layout="row">
