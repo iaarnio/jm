@@ -19,7 +19,6 @@
     };
 
     function queryDetails(address) {
-    console.log(        'url:' +  'https://nominatim.openstreetmap.org/search?q=' + address.road + '+' + address.city + '&format=json&addressdetails=1');
     //address.road = 'tehtaankatu+7'
       return $http({
         method: 'GET',
@@ -61,7 +60,6 @@
     }
 
     function addAddress(address) {
-      console.log('addAddr');
       return $http.post('/api/addresses', address)
         .then(serviceComplete)
         .catch(serviceFail);

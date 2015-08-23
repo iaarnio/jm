@@ -34,7 +34,6 @@
   }
 
   function create(req, res) {
-    console.log('Addr-create');
     Address.create(req.body)
     .then(function(address) {
       returnResponse(res, 201, address);

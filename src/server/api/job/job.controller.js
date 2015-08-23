@@ -34,6 +34,7 @@
   }
 
   function create(req, res) {
+    console.log(req.body);
     Job.create(req.body)
     .then(function(job) {
       returnResponse(res, 201, job);
