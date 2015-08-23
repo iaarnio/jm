@@ -24,12 +24,10 @@
       type: String,
       required: 'Employer is mandatory'
     },
-    /*
   	address: {
   		type: Schema.ObjectId,
   		ref: 'Address'
   	},
-    */
   	title: {
   		type: String,
   		default: '',

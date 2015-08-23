@@ -22,7 +22,13 @@
       logger.info('JobCreateController createJob');
       addressService.queryDetails(vm.job.address)
       .then(addressService.addAddress)
-      .then(jobService.addJob)
+      .then(function(address) {
+        vm.job.address = address._id; 
+        vm.job.employer = Auth.getCurrentUser()._id;
+        vm.job.employerName = Auth.getCurrentUser().name; 
+        console.log(vm.job);
+        return jobService.addJob(vm.job)
+      })
       .then(jobCreatedSuccessfully)
       .catch(jobCreationFailed);
     }
@@ -36,12 +42,11 @@
     function jobCreationFailed(err) {
       logger.error('Job creation failed: ' + err);
     }
-
+    
     function confirmJob() {
       vm.job.employer = Auth.getCurrentUser()._id;
       vm.job.employerName = Auth.getCurrentUser().name;
-      
-            
+         
     }
 
   }
