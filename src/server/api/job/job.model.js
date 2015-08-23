@@ -24,6 +24,12 @@
       type: String,
       required: 'Employer is mandatory'
     },
+    /*
+  	address: {
+  		type: Schema.ObjectId,
+  		ref: 'Address'
+  	},
+    */
   	title: {
   		type: String,
   		default: '',
@@ -37,21 +43,6 @@
   	end: {
   		type: Date,
   		default: Date.now
-  	},
-  	address: {
-  		type: String,
-  		default: '',
-  		trim: true
-  	},
-  	lat: {
-  		type: String,
-  		default: '',
-  		trim: true
-  	},
-  	lon: {
-  		type: String,
-  		default: '',
-  		trim: true
   	},
   	description: {
   		type: String,

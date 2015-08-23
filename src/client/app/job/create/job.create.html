@@ -15,7 +15,12 @@
 
       <md-input-container>
         <label>Osoite</label>
-        <input type="text" name="title" ng-model="vm.job.address" required/>
+        <input type="text" name="title" ng-model="vm.job.address.road" required/>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Kaupunki</label>
+        <input type="text" name="title" ng-model="vm.job.address.city" required/>
       </md-input-container>
 
       <div layout="row">

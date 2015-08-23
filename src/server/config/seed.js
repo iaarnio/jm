@@ -6,6 +6,7 @@
 'use strict';
 
 let _ = require('lodash');
+let Address = require('../api/address/address.model');
 let User = require('../api/user/user.model');
 let Job = require('../api/job/job.model');
 
@@ -15,8 +16,11 @@ function seed() {
   let persons = [];
   let companies = [];
   
-  User
+  Address
   .find({}).remove()
+  .then(function() {
+    return User.find({}).remove();
+  })
   .then(function() {
     return Promise.all(initPersonUsers());
   })

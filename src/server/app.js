@@ -30,6 +30,7 @@ server.on('listening', onListening);
 
 // API routes
 app.use('/api/jobs', require('./api/job'));
+app.use('/api/addresses', require('./api/address'));
 app.use('/api/users', require('./api/user'));
 app.use('/api/applicants', require('./api/applicant'));
 

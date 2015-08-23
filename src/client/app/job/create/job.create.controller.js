@@ -4,9 +4,9 @@
   angular.module('jokumuuApp')
     .controller('JobCreateController', JobCreateController);
 
-  JobCreateController.$inject = ['$location', '$scope', 'jobService', 'Auth', 'logger'];
+  JobCreateController.$inject = ['$location', '$scope', 'jobService', 'addressService', 'Auth', 'logger'];
 
-  function JobCreateController($location, $scope, jobService, Auth, logger) {
+  function JobCreateController($location, $scope, jobService, addressService, Auth, logger) {
     var vm = this;
 
     vm.job = {};
@@ -20,17 +20,27 @@
 
     function createJob() {
       logger.info('JobCreateController createJob');
-      jobService.addJob(vm.job)
-      .then(function() {
-        logger.info('Job created successfully');
-        $location.path('/jobList');
-        logger.info($location.path());
-      })
+      addressService.queryDetails(vm.job.address)
+      .then(addressService.addAddress)
+      .then(jobService.addJob)
+      .then(jobCreatedSuccessfully)
+      .catch(jobCreationFailed);
     }
     
+    function jobCreatedSuccessfully() {
+      logger.info('Job created successfully');
+      $location.path('/jobList');
+      logger.info($location.path());
+    }
+
+    function jobCreationFailed(err) {
+      logger.error('Job creation failed: ' + err);
+    }
+
     function confirmJob() {
       vm.job.employer = Auth.getCurrentUser()._id;
       vm.job.employerName = Auth.getCurrentUser().name;
+      
             
     }
 

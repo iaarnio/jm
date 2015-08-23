@@ -42,17 +42,14 @@
 
     }
     
-    
     function serviceComplete(response) {
       return response.data;
     }
 
     function serviceFail(message) {
-      var errorMsg = 'JobService failed on XHR: ' + message.status + ' ' + message.statusText;
+      var errorMsg = 'jobService failed on XHR: ' + message.status + ' ' + message.statusText;
       logger.error(errorMsg);
-      console.log(message);
-      $q.reject(errorMsg);
-      return $q.promise;
+      return $q.reject(errorMsg);
     }
     
   }
