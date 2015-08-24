@@ -29,8 +29,7 @@
           'Access-Control-Allow-Methods': 'GET',
           'Access-Control-Allow-Credentials': true
         }})
-        .then(addAddressDetails)
-        .then(serviceComplete)
+        .then(collectAddressDetails)
         .catch(serviceFail);
     }
 
@@ -42,9 +41,13 @@
 
     }
     
-    function addAddressDetails(addressResults) {
-      console.log(addressResults.data[0])
-      return addressResults.data[0];
+    function collectAddressDetails(queryResults) {
+      let qRes = queryResults.data[0];
+      let addressDetails = qRes.address;
+      addressDetails.lat = qRes.lat;
+      addressDetails.lon = qRes.lon;
+      console.log(addressDetails)
+      return addressDetails;
     }
     
     function listAddresses() {
@@ -60,6 +63,8 @@
     }
 
     function addAddress(address) {
+      console.log('add addr');
+      console.log(address);
       return $http.post('/api/addresses', address)
         .then(serviceComplete)
         .catch(serviceFail);
