@@ -4,9 +4,9 @@
   angular.module('jokumuuApp')
     .controller('JobDetailsController', JobDetailsController);
 
-  JobDetailsController.$inject = ['$routeParams', 'jobService', 'addressService', 'logger', '$scope'];
+  JobDetailsController.$inject = ['$routeParams', 'jobService', 'addressService', 'logger'];
 
-  function JobDetailsController($routeParams, jobService, addressService, logger, $scope) {
+  function JobDetailsController($routeParams, jobService, addressService, logger) {
     var vm = this;
 
     vm.job = {};
@@ -47,8 +47,8 @@
     
     function setMapCoordinates(address) {
       var marker = {
-        lat: Number(address.lat),
-        lng: Number(address.lon),
+        lat: address.lat,
+        lng: address.lon,
         message: vm.job.title,
         focus: true,
         draggable: false
@@ -61,8 +61,8 @@
       console.log(vm.markers);
 
       vm.center = {
-        lat: Number(address.lat),
-        lng: Number(address.lon),
+        lat: address.lat,
+        lng: address.lon,
         zoom: 17,
         autoDiscover: false
       };

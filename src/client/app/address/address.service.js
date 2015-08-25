@@ -44,8 +44,8 @@
     function collectAddressDetails(queryResults) {
       var qRes = queryResults.data[0];
       var addressDetails = qRes.address;
-      addressDetails.lat = qRes.lat;
-      addressDetails.lon = qRes.lon;
+      addressDetails.lat = Number(qRes.lat);
+      addressDetails.lon = Number(qRes.lon);
       console.log(addressDetails)
       return addressDetails;
     }
