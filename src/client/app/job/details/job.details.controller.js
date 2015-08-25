@@ -4,12 +4,14 @@
   angular.module('jokumuuApp')
     .controller('JobDetailsController', JobDetailsController);
 
-  JobDetailsController.$inject = ['$routeParams', 'jobService', 'addressService', 'logger'];
+  JobDetailsController.$inject = ['$routeParams', 'jobService', 'addressService', 'logger', '$scope'];
 
-  function JobDetailsController($routeParams, jobService, addressService, logger) {
+  function JobDetailsController($routeParams, jobService, addressService, logger, $scope) {
     var vm = this;
 
     vm.job = {};
+    vm.markers = {};
+    vm.center = {};
     vm.viewJob = viewJob;
     vm.deleteJob = deleteJob;
     vm.applyJob = applyJob;
@@ -30,7 +32,7 @@
         return job.address;
       })
       .then(addressService.viewAddress)
-      //.then(createMap);
+      .then(setMapCoordinates);
     }
 
     function deleteJob(job) {
@@ -43,16 +45,27 @@
       jobService.addJob(job);
     }
     
-    function createMap(address) {
-      let map = new OpenLayers.Map('basicMap');
-      var mapnik         = new OpenLayers.Layer.OSM();
-      //var fromProjection = new OpenLayers.Projection("EPSG:4326");   // Transform from WGS 1984
-      //var toProjection   = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
-      var position       = new OpenLayers.LonLat(address.lat, address.lon);//.transform( fromProjection, toProjection);
-      var zoom           = 15; 
+    function setMapCoordinates(address) {
+      var marker = {
+        lat: Number(address.lat),
+        lng: Number(address.lon),
+        message: vm.job.title,
+        focus: true,
+        draggable: false
+      }
+      
+      vm.markers = {
+        jobMarker: marker
+      }
+      
+      console.log(vm.markers);
 
-      map.addLayer(mapnik);
-      map.setCenter(position, zoom );      
+      vm.center = {
+        lat: Number(address.lat),
+        lng: Number(address.lon),
+        zoom: 17,
+        autoDiscover: false
+      };
     }
   }
 })();

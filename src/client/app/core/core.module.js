@@ -12,7 +12,9 @@
     'ngSanitize',
     'ngRoute',
     
-    'blocks.logger'
+    'blocks.logger',
+    
+    'leaflet-directive'
   ]);
 
 })();
