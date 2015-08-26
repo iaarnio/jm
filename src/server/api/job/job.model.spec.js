@@ -9,18 +9,30 @@ mockgoose(mongoose);
 
 var expect = require('chai').expect;
 var Job = require('./job.model');
+var User = require('../user/user.model');
 
 var title1 = 'Test title';
-var employer1 = 'Test title'; 
+var employerName1 = 'Test employer'; 
+var employerId1 = new User();
+
+
+function createJob() {
+  var job = new Job({
+    title: title1, 
+    employer: employerId1, 
+    employerName: employerName1
+  });
+  return job;
+}
 
 function populateCollection(done) {
-  var job = new Job({title: title1, employer: employer1});
+  var job = createJob();
   job.save(function(err) {
     if (err) {
       throw('populateCollection failed: ' + err);
     }
     done();
-  });
+  }, function(foo) { console.log(foo);});
 }
 
 function cleanCollection(done) {
@@ -50,7 +62,7 @@ function cleanCollection(done) {
     });
 
     it('should save job', function(done) {
-      var job = new Job({title: title1, employer: employer1});
+      var job = createJob();
       job.save(function(err) {
         expect(err).should.not.exist;
         done();
@@ -94,7 +106,7 @@ function cleanCollection(done) {
     });
     
     it('should find job with employer', function(done) {
-      Job.find({employer: employer1}, function(err, jobs) {
+      Job.find({employerName: employerName1}, function(err, jobs) {
         expect(err).should.not.exist;
         expect(jobs).to.have.length(1);
         done();
@@ -102,7 +114,7 @@ function cleanCollection(done) {
     });
     
     it('should fail when saving a duplicate job', function(done) {
-      var job = new Job({title: title1, employer: employer1});
+      var job = createJob();
       job.save(function(err) {
         expect(err).should.exist;
         done();

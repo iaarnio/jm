@@ -5,7 +5,9 @@ var browserSync = require('browser-sync');
 var path = require('path');
 var $ = require('gulp-load-plugins')({lazy: true});
 var config = require('./gulp.config.js')();
+var babel = require('babel/register');
 var port = process.env.PORT || config.defaultPort;
+
 
 gulp.task('default', ['help']);
 gulp.task('help', $.taskListing);
@@ -88,7 +90,9 @@ function autotest(done) {
 function testnode(done) {
   return gulp
     .src(config.server + '**/*.spec.js', {read: false})
-    .pipe($.mocha())
+    //.pipe($.babel())
+    //.pipe($.debug())
+    .pipe($.mocha({timeout: 9000}))
     .once('error', function (err) {
       console.log(err)
       process.exit(1);
