@@ -32,7 +32,7 @@ function populateCollection(done) {
       throw('populateCollection failed: ' + err);
     }
     done();
-  }, function(foo) { console.log(foo);});
+  });
 }
 
 function cleanCollection(done) {
