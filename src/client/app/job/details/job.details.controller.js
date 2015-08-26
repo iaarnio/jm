@@ -47,22 +47,18 @@
     
     function setMapCoordinates(address) {
       var marker = {
-        lat: address.lat,
-        lng: address.lon,
+        lat: address.latitude,
+        lng: address.longitude,
         message: vm.job.title,
         focus: true,
         draggable: false
       }
-      
       vm.markers = {
         jobMarker: marker
       }
-      
-      console.log(vm.markers);
-
       vm.center = {
-        lat: address.lat,
-        lng: address.lon,
+        lat: address.latitude,
+        lng: address.longitude,
         zoom: 17,
         autoDiscover: false
       };

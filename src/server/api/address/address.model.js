@@ -85,13 +85,13 @@
   		default: '',
   		trim: true
   	},
-  	lat: {
-  		type: String,
+  	latitude: {
+  		type: Number,
   		default: '',
   		trim: true
   	},
-  	lon: {
-  		type: String,
+  	longitude: {
+  		type: Number,
   		default: '',
   		trim: true
   	},
