@@ -25,6 +25,7 @@ module.exports = function (config) {
       'src/client/bower_components/toastr/toastr.js',
       'src/client/bower_components/moment/moment.js',
       'src/client/bower_components/angular-material-icons/angular-material-icons.min.js',
+      'src/client/bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.min.js',
 
       'src/client/app/**/*.module.js',
       'src/client/app/app.js',
