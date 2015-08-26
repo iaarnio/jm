@@ -2,6 +2,7 @@
   "name": "jokumuu",
   "version": "0.0.0",
   "dependencies": {
+    "jquery": "~1.11.0",
     "angular": "~1.4.0",
     "angular-cookies": "~1.4.0",
     "angular-sanitize": "~1.4.0",
@@ -12,19 +13,18 @@
     "angular-material": "~0.10.0",
     "material-design-icons": "~1.0.0",
     "angular-material-icons": "~0.5.0",
-    "jquery": "~1.11.0",
     "toastr": "~2.1.2",
     "moment": "~2.10.2",
     "font-awesome": ">=4.1.0",
     "lodash": "~2.4.1",
-    "angular-leaflet-directive": "~0.8.6",
-    "openlayers": "*"
+    "angular-leaflet-directive": "~0.8.6"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.0",
     "angular-scenario": "~1.4.0"
   },
   "resolutions": {
-    "angular": "1.4.3"
+    "angular": "1.4.3",
+    "jquery": "~1.11.0"
   }
 }
