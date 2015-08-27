@@ -35,6 +35,10 @@ body {
   width: 95%;
 }
 
+.map {
+  height: 300px;  
+}
+
 .odd {
   background-color: cornflowerblue;
 }

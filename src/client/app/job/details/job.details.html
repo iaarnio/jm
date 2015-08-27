@@ -4,7 +4,7 @@
       <h3>{{vm.job.title}}</h3>
       <p>{{vm.job.employerName}}</p>
       <div ng-if="vm.center.lat && vm.center.lng">
-        <leaflet markers="vm.markers" center="vm.center" style="height:300px" ></leaflet>
+        <leaflet markers="vm.markers" center="vm.center" class="map"></leaflet>
       </div>
     </md-content>    
   </div>
