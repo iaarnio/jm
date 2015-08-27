@@ -7,7 +7,8 @@
         .when('/jobCreate', {
           templateUrl: 'app/job/create/job.create.html',
           controller: 'JobCreateController',
-          controllerAs: 'vm'
+          controllerAs: 'vm',
+          authenticate: true
         });
     });
 })();
